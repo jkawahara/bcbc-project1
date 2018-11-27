@@ -17,55 +17,56 @@
 </head>
 
 <body>
-    <div class="pos-f-t" style="width: 390px;" class="fixed-top">
+    <div class="pos-f-t" style="width: 380px;" class="fixed-top">
         <div class="collapse" id="navbarToggleExternalContent">
             <div class="bg-dark p-4">
 
-                <h4 class="text-white">Settings</h4 style= color:rgb(0,110,159);>
+                <h4 class="text-white">Settings</h4>
                 <form>
-                        <div class="form-row align-items-center">
-                          <div class="col-auto">
+                    <div class="form-row align-items-center">
+                        <div class="col-auto">
                             <label class="sr-only" for="inlineFormInput">Name</label>
                             <input type="text" class="form-control mb-2" id="inlineFormInput" placeholder="Jane Doe">
-                          </div>
-                          <div class="col-auto">
+                        </div>
+                        <div class="col-auto">
                             <label class="sr-only" for="inlineFormInputGroup">Username</label>
                             <div class="input-group mb-2">
-                              <div class="input-group-prepend">
-                                <div class="input-group-text">@</div>
-                              </div>
-                              <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Username">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">@</div>
+                                </div>
+                                <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Username">
                             </div>
-                          </div>
-                          <div class="col-auto">
-                            <div class="form-check mb-2">
-                              <input class="form-check-input" type="checkbox" id="autoSizingCheck">
-                              <label class="form-check-label" for="autoSizingCheck">
-                                Remember me
-                              </label>
-                            </div>
-                          </div>
-                          <div class="col-auto">
-                            <button type="submit" id="logInBnt" class="btn btn-primary mb-2">Log In</button>
-                          </div>
                         </div>
-                      </form>
+                        <div class="col-auto">
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" id="autoSizingCheck">
+                                <label class="form-check-label" for="autoSizingCheck">
+                                    Remember me
+                                </label>
+                            </div>
+                        </div>
+                        <div class="col-auto">
+                            <button type="submit" id="logInBnt" class="btn btn-primary mb-2">Log In</button>
+                        </div>
+                    </div>
+                </form>
                 <span class="text-muted">User Options</span>
                 <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                        <label class="form-check-label" for="defaultCheck1">
-                          Option One
-                        </label>
-                      </div>
-                      <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck2" disabled>
-                        <label class="form-check-label" for="defaultCheck2">
-                          Option Two
-                        </label>
-                      </div>
+                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                    <label class="form-check-label" for="defaultCheck1">
+                        Option One
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck2" disabled>
+                    <label class="form-check-label" for="defaultCheck2">
+                        Option Two
+                    </label>
+                </div>
             </div>
         </div>
         <nav class="navbar navbar-dark bg-dark">
+            <h2 style="background-color: transparent; color: rgb(255, 255, 255);" class="text-center"><strong><i class="fa fa-moon"></i>NightCrawler</strong></h2>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent"
                 aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -73,12 +74,6 @@
         </nav>
     </div>
     <div class="jumbotron jumbotron-fluid">
-
-        <!-- Jumbotron for Title -->
-        <div class="jumbotron" id="titleHeader" style="background-color: transparent; color: rgb(255, 255, 255);">
-            <h1 class="text-center"><strong><i class="fa fa-moon"></i>NightCrawler</strong></h1>
-        </div>
-
         <div class="col-sm-12">
             <!-- Here we create the text box for capturing the search term-->
             <form role="form">
@@ -94,20 +89,23 @@
 
             </div>
             <button type="submit" class="btn btn-danger" id="run-search"><i class="fa fa-exclamation"></i>SOS</button>
+            <br>
         </div>
-
+        <footer>
+            <h6 class="text-center" class="fixed-bottom"><small>Developed by 4 awesome people!<i class="fa fa-heart"></i></small></h6>
+        </footer>
     </div>
-    <footer><h6 class="text-center" class="fixed-bottom"><small>Developed by 4 awesome people!<i class="fa fa-heart"></i></small></h6></footer>
 
-    <!-- jQuery JS -->
+
+  
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
         crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
 
-    <!-- Code to the JavaScript File -->
-    <script src="jsgoeshere"></script>
+
+    <script src="assets/js/js.js"></script>
 
 </body>
 
