@@ -1,0 +1,81 @@
+
+
+body{
+    
+    background-color: rgb(40, 122, 204);
+    background-blend-mode:multiply;
+    background-image: url("../images/backgroundmap.png");
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  
+}
+
+.jumbotron-fluid{
+    
+     width:390px; 
+    height:100%; 
+    background-image: url("../images/backgroundmap.png");
+    background-blend-mode:difference;
+    
+   
+
+
+}
+#titleHeader{
+    padding-bottom: 0px;
+}
+
+.form-group{
+    color: rgb(255, 255, 255);
+}
+
+
+.fa-moon{
+    color: rgb(0,110,159);
+}
+
+#run-search{
+    outline: none;
+    border: none;
+    cursor: pointer;
+    display: block;
+    float: right;
+    border-radius: 100px;
+    border-radius: 48%;
+    box-shadow: 0 4px rgb(39, 90, 138);
+    
+}
+#run-search:hover{
+    color: rgb(143,40,48);
+    background-color: rgb(143,40,48);
+    box-shadow: 0 2px rgb(39, 90, 138);
+
+}
+#run-search:active{
+    color: rgb(143,40,48);
+    background-color: rgb(143,40,48);
+    box-shadow: 0 0px rgb(39, 90, 138);
+
+
+}
+
+.fa-ethereum{
+    color:rgb(239,102,77);
+}
+.fa-heart{
+    color: pink;
+}
+footer{
+    
+    padding-bottom: 5px;
+    width: 390px;
+    background-color: rgb(0,110,159);
+    position: bottom;
+    text-align: center;
+    color: rgb(255, 255, 255);
+    position: absolute;
+    z-index: 1;
+}
+#logInBnt{
+    background-color:rgb(143,40,48);
+
+}
