@@ -1,24 +1,21 @@
 
 
 body{
-    
+    width:390px; 
+    /* height:100%;  */
     background-color: rgb(40, 122, 204);
     background-blend-mode:multiply;
-    background-image: url("../images/backgroundmap.png");
+    /* background-image: url("../images/backgroundmap.png"); */
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   
 }
 
 .jumbotron-fluid{
-    
-     width:390px; 
+    background-color: rgb(131, 72, 136);
+    width:390px; 
     height:100%; 
     background-image: url("../images/backgroundmap.png");
-    background-blend-mode:difference;
-    
-   
-
-
+    background-blend-mode:multiply;
 }
 #titleHeader{
     padding-bottom: 0px;
@@ -45,13 +42,13 @@ body{
     
 }
 #run-search:hover{
-    color: rgb(143,40,48);
+    color: rgb(253, 253, 253);
     background-color: rgb(143,40,48);
     box-shadow: 0 2px rgb(39, 90, 138);
 
 }
 #run-search:active{
-    color: rgb(143,40,48);
+    color: rgb(250, 250, 250);
     background-color: rgb(143,40,48);
     box-shadow: 0 0px rgb(39, 90, 138);
 
