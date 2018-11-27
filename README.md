@@ -4,7 +4,7 @@
   * The BCBC curriculum generally focuses on JavaScript along with HTML/CSS, using the MERN (MongoDB, Express, React, Node) software stack, to teach web development skills across HTML/CSS/Javascript. 
 
 ### 2. What
-  * This project covers the following aspects of web development on the client side, using a realtime database, jQuery and Bootstrap, to build NightCrawler!, a mobile web-based application, that leverages mapping/crime statistics APIs, to present the safest routes home. ![nightcrawler-readme.png](assets/images/nightcrawler-readme.png) "app UI")
+  * This project covers the following aspects of web development on the client side, using a realtime database, jQuery and Bootstrap, to build NightCrawler!, a mobile web-based application, that leverages mapping/crime statistics APIs, to present the safest routes home. ![nightcrawler-readme.png](assets/images/nightcrawler-readme.png "app UI")
 
   * Objective
     * TBD
