@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
         crossorigin="anonymous">
     <link rel="stylesheet" href="assets/css/style.css">
+    <script src="https://www.gstatic.com/firebasejs/5.5.9/firebase.js"></script>
 
 
 </head>
@@ -25,15 +26,15 @@
                     <div class="form-row align-items-center">
                         <div class="col-auto">
                             <label class="sr-only" for="inlineFormInput">Name</label>
-                            <input type="text" class="form-control mb-2" id="inlineFormInput" placeholder="Jane Doe">
+                            <input type="text" class="form-control mb-2" id="inlineFormInput" placeholder="Name">
                         </div>
                         <div class="col-auto">
                             <label class="sr-only" for="inlineFormInputGroup">Username</label>
                             <div class="input-group mb-2">
                                 <div class="input-group-prepend">
-                                    <div class="input-group-text">@</div>
+                                    <div class="input-group-text">Tel</div>
                                 </div>
-                                <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Username">
+                                <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Emergency Contact">
                             </div>
                         </div>
                         <div class="col-auto">
@@ -86,16 +87,22 @@
                     allowfullscreen></iframe>
 
             </div>
-            <button type="submit" class="btn btn-danger" id="run-search"><i class="fa fa-exclamation"></i><a href= "tel: 911">SOS</a></button>
+            <button type="submit" class="btn btn-danger" id="run-search"><i class="fa fa-exclamation"></i>SOS</button>
             <br>
         </div>
         <footer>
             <h6 class="text-center" class="fixed-bottom"><small>Developed by 4 awesome people!<i class="fa fa-heart"></i></small></h6>
         </footer>
     </div>
+    <div class="popup-bg"></div>
+    <div class="popup-buttons" id="popup-buttons">
+        <button type="submit" class="btn btn-danger"><i class="fa fa-exclamation"></i><a href="tel: 911">Call 911</a></button>
+        <button type="submit" class="btn btn-danger"><a href="lyft://">Lyft</a></button>
+        <button type="submit" class="btn btn-danger"><a href="" id="emergency-link" >Emergency Contact</a></button>
+    </div>
 
 
-  
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
         crossorigin="anonymous"></script>
