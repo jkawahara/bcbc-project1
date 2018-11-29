@@ -41,7 +41,7 @@ $.ajax({
   //console.log(data);
   dangerData(data);
   sortData(data);
-  console.log(longLatBurglary);
+  console.log(longLatAssault);
 });
 
 function dangerData(data){
@@ -75,13 +75,9 @@ function sortData(dangerStat){
     }else if(dangerStat[i].category == "Vehicle Theft"){
       longLatVehicleTheft.x.push(dangerStat[i].x);
       longLatVehicleTheft.y.push(dangerStat[i].y);
-    }
-    
+    } 
   }
-
 }
-
-
 
 
 $('#myModal').on('shown.bs.modal', function () {
