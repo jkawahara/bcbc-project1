@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-=======
-
->>>>>>> 1a7d75e4166a6a6f3e169e02616aaf30d722ce48
 
 
 var dangerStat = [];
@@ -48,6 +44,7 @@ $.ajax({
   console.log(longLatAssault);
 });
 
+
 function dangerData(data){
   for (var i = 0; i<5000; i++){
     if (data[i].category == "ASSAULT" || data[i].category == "LARCENY/THEFT" || data[i].category == "BURGLARY" || data[i].category == "ROBBERY" || data[i].category == "VEHICLE THEFT"){
@@ -55,6 +52,8 @@ function dangerData(data){
     }
   }
 }
+
+
 
 function sortData(dangerStat){
   var j = 0;
@@ -83,12 +82,44 @@ function sortData(dangerStat){
   }
 }
 
+function getLongLat(myLocation){
+  var x = 0; //chosen lat distance to show the crime spots from geo location
+  var y = 0; //chosen long distance to show crime spot from geo location
+  var radLongLat = {
+    x: [], 
+    y: []
+  };
 
-<<<<<<< HEAD
-$('#myModal').on('shown.bs.modal', function () {
-    $('#myInput').trigger('focus')
-  })
-=======
+  for (var i = 0; i < dangerStat.length;  i++) {
+    if ((dangerStat.x < (myLocation+x) && dangerStat.y < (myLocation+y)) && (dangerStat.x > (myLocation-x) && dangerStat.y > (myLocation-y))) {
+      radLongLat.x.push(dangerStat[i].x);
+      radLongLat.y.push(dangerStat[i].y);
+    }
+  }
+
+  return radLongLat;
+}
+
+function getLongLat(myLocation, array){
+  var x = 0; //chosen lat distance to show the crime spots from geo location
+  var y = 0; //chosen long distance to show crime spot from geo location
+  var radLongLat = {
+    x: [], 
+    y: []
+  };
+
+  for (var i = 0; i < array.length;  i++) {
+    if ((array.x[i] < (myLocation+x) && array.y[i] < (myLocation+y)) && (array.x[i] > (myLocation-x) && array.y[i] > (myLocation-y))){
+      radLongLat.x.push(array.x[i]);
+      radLongLat.y.push(array.y[i]);
+    }
+  }
+
+  return radLongLat;
+}
+
+
+
 $(document).ready(function () {
 
     var config = {
@@ -131,5 +162,4 @@ $(document).ready(function () {
     });
 });
 
->>>>>>> 1a7d75e4166a6a6f3e169e02616aaf30d722ce48
 
