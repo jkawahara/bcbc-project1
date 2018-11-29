@@ -14,6 +14,7 @@
     <script src="https://www.gstatic.com/firebasejs/5.5.9/firebase.js"></script>
 
 
+
 </head>
 
 <body>
@@ -83,11 +84,13 @@
             </form>
 
             <div class="mapFrame">
-                <iframe width="375" height="550" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q=place_id:..."
+
+                <iframe width="375" height="550" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q=place_id:" + mapKey
+
                     allowfullscreen></iframe>
 
             </div>
-            <button type="submit" class="btn btn-danger" id="run-search"><i class="fa fa-exclamation"></i>SOS</button>
+            <button type="submit" class="btn btn-danger" id="run-search"><i class="fa fa-exclamation"></i><a href= "tel: 911">SOS</a></button>
             <br>
         </div>
         <footer>
@@ -108,9 +111,8 @@
         crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
-
-
     <script src="assets/js/js.js"></script>
+
 
 </body>
 
