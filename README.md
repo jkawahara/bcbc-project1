@@ -9,15 +9,14 @@
 
 ### 2. What / Objectives
   * This project development, from design through deployment of the mobile web-based application, NightCrawler, used web development technologies on the client side, HTML/CSS/DOM/JavaScript, along with various libraries including Bootstrap and jQuery.
-  * Data resides in a realtime database, offered by [Firebase](https://firebase.google.com/docs/?authuser=0)
-    * [Web API](https://firebase.google.com/docs/web/setup?authuser=0).
+  * Data resides in a realtime database, offered by Firebase via Web API
   * Additionally, the following APIs were used to query available maps and crime databases:
     * [Google Maps Platform](https://developers.google.com/maps/documentation/):
-      * [Static Maps API](https://developers.google.com/maps/documentation/maps-static/intro)
-      * [Maps JavaScript API](https://developers.google.com/maps/documentation/javascript/tutorial) for Heatmap capability
-      * [Street View API](https://developers.google.com/maps/documentation/streetview/intro) for Streetview capability
+      * Static Maps API
+      * Maps JavaScript API for Heatmap capability
+      * Street View API for Streetview capability
     * [DataSF](https://datasf.org/opendata/)
-      * [Socrata Open Data API (SODAPI)](https://dev.socrata.com/foundry/data.sfgov.org/cuks-n6tp) for San Francisco Data, specific to Police Department Incident Reports
+      * Socrata Open Data API (SODAPI) for San Francisco Data, specific to Police Department Incident Reports
   * Wireframe:
     * View 1
       * ![nightcrawler-readme.png](assets/images/nightcrawler-readme.png "app UI")
@@ -49,10 +48,12 @@
       * Integrate stored Police Department Incident Reports data, into Maps JavaScript API, to render Heatmap on map layer
         * Determine which objects (assault, theft, burglary, robbery, vehicle theft) to include in Heatmap 
     * Configure, connect and read/write data from/to Firebase Realtime database
-      * Define realtime data requirements and store in Firebase 
+      * Define realtime data requirements for storage of user profile in Firebase 
 
   * Prerequisites for Development:
     * MacBook Air (Intel Core i7, 2.2 GHz, 1 Processor, 2 Cores, 8GB)
+    * Latitude E6430 (Intel Core i7, 3 GHz, 1 Processor, 2 Cores, 8GB)
+    * 64 bit operating system 
     * git version 2.18.0
     * Visual Studio Code Version 1.29.1
     * [GitHub](https://github.com/jkawahara/firebase)
@@ -63,12 +64,40 @@
     * [Firebase](https://www.gstatic.com/firebasejs/5.5.9/firebase.js)
     * [Bootstrap](https://getbootstrap.com/docs/4.1/getting-started/introduction/)
     * [jQuery](https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js)
+    * Google Maps Platform:
+      * [Static Maps API](https://developers.google.com/maps/documentation/maps-static/intro)
+      * [Maps JavaScript API](https://developers.google.com/maps/documentation/javascript/tutorial) for Heatmap capability
+      * [Street View API](https://developers.google.com/maps/documentation/streetview/intro) for Streetview capability
+    * DataSF:
+      * [Socrata Open Data API (SODAPI)](https://dev.socrata.com/foundry/data.sfgov.org/cuks-n6tp) for San Francisco Data, specific to Police Department Incident Reports
 
-  * Installing: Refer to Prerequisites and Deployment.
+  * Installing:
+    * NightCrawler is a client-side mobile web-based application, using realtime database and API services only, i.e. application doesn't require server
+      * For using application, refer to Deployment section below
+    * For further development, clone or download application files from [GitHub bcbc-project1](https://github.com/jkawahara/bcbc-project1), which is organized into the following directory structure:
+      * /bcbc-project1
+        * /assets
+          * /css
+            * style.css
+          * /images
+            * various image files
+          * /js
+            * config.js - private API keys file
+            * js.js
+        * index.html
+        * LICENSE
+        * README.md
 
-  * Running the tests: Unit and integration testing informally executed.
+  * Running the tests:
+    * Unit testing & integration testing was informally executed
+      * Code reviews of code changes during pull requests were tracked in [GitHub Code](https://github.com/jkawahara/bcbc-project1)
+      * Peer reviews of user interface rendering and functionality completed by project team
 
-  * Deployment: Deployed on [GitHub pages](https://jkawahara.github.io/bcbc-project1/).
+  * Deployment:
+    * Deployed on [GitHub bcbc-project1 pages](https://jkawahara.github.io/bcbc-project1/)
+    * Due to API key privacy, developers and users are required to obtain their own API keys in order to further develop or use the application
+      * The config.js file must be updated with respective API keys
+      * TBD for using app without development, detail out config.js update; account for relative path so app works    
 
 ## Versioning
   * For the versions available, see the tags on this repository.
