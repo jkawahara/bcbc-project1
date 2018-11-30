@@ -20,7 +20,7 @@ body{
 
 .jumbotron-fluid{
     background-color: rgb(241, 205, 245);
-    width:400px; 
+    width:100%;
     height:100%; 
     background-image: url("../images/backgroundmap.png");
     background-blend-mode:multiply;
@@ -44,14 +44,13 @@ body{
 #run-search{
     margin-top: 8px;
     height: 40px;   
-    width: 110px;
+    width: 100%;
     outline: none;
     border: none;
     cursor: pointer;
     display: block;
     float: right;
-    border-radius: 100px;
-    border-radius: 48%;
+    border-radius: 20px;
     box-shadow: 0 4px rgb(39, 90, 138);
     
 }
@@ -79,7 +78,7 @@ footer{
     margin-top:30px;
     font-size: 8px;
     box-shadow: 0 2px rgb(39, 90, 138);
-    width: 400px;
+    width: 100%;
     background-color: rgb(0,110,159);
     position: bottom;
     text-align: center;
@@ -95,31 +94,27 @@ footer{
 .mapFrame{
     margin-right:20px;
 }
-.popup-bg {
-    margin-left: 25px;
-    position: fixed;
-    top:320px;
-    left:0;
-    display:none;
-    width:360px;
-    height:200px;
-    background:transparent;
-    opacity:.9;
-    z-index:998;
-}
+ .popup-bg {
+     position: fixed;
+     top:0;
+     left:0;
+     display:none;
+     width:100%;
+     height:100%;
+     background:#000;
+     opacity:0.6;
+     z-index:998;
+ }
+ .popup-buttons {
+     position:fixed;
+     top:50%;
+     left:50px;
+     display:none;
+     width:100%;
+     height:100%;
 
-.popup-buttons {
-    background-color: transparent;
-    position: fixed;
-    top:50%;
-    left:50px;
-    display:none;
-    width:300px;
-    height:150px;
-    /* background: #fff; */
-    box-shadow: 0 1px 20px #000;
-    z-index: 999;
-}
+     z-index: 999;
+ }
 .controls {
     margin-top: 10px;
     border: 1px solid transparent;
@@ -150,13 +145,13 @@ footer{
 
 #map-canvas{
     box-shadow: 0 1px 20px #000;
-    width: 370px;
+    width: 100%;
     height:640px;
 }
 
 #mapsearch{
-    border-style: solid;
-    box-shadow: 0 0px 20px #000;
+    margin-bottom:50px;
+
 }
 #primer{
     margin-top: 30px;
@@ -206,4 +201,75 @@ a{
     font-family: Roboto;
     font-size: 13px;
     font-weight: 300;
+}
+
+.round-button {
+    width:200px;
+}
+.round-button-circle {
+    width: 100%;
+    height:0;
+    padding-bottom: 100%;
+    border-radius: 50%;
+    border:10px solid #cfdcec;
+    overflow:hidden;
+    box-sizing: unset;
+    background: #f55;
+    box-shadow: 0 0 3px gray;
+}
+.round-button-circle:hover {
+    background:#f00;
+}
+.round-button a {
+    display:block;
+    float:left;
+    width:100%;
+    padding-top:50%;
+    padding-bottom:50%;
+    line-height:1em;
+    margin-top:-0.5em;
+
+    text-align:center;
+    color:#e2eaf3;
+    font-family:Verdana;
+    font-size:1.2em;
+    font-weight:bold;
+    text-decoration:none;
+}
+
+#sosi-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -100px 0 0 -100px;
+    display: none;
+    z-index: 1000;
+}
+
+.jumbotron-fluid {
+    position: relative;
+}
+#segund {
+    display:none;
+    z-index: 1000;
+    position: absolute;
+    left:20px;
+    bottom:100px;
+    width:150px;
+}
+#tercer {
+    display:none;
+    z-index: 1000;
+    position: absolute;
+    right:20px;
+    bottom:100px;
+    width:150px;
+}
+.popup-button a:hover {
+    color:white;
+    text-decoration: none;
+    font-weight:bold;
+}
+.popup-button:hover {
+
 }

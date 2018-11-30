@@ -104,10 +104,10 @@ $(document).ready(function () {
 
     $("#run-search").on("click", function (event) {
         $(".popup-bg").show();
-        $(".popup-buttons").show();
+        $("#sosi-button, #segund, #tercer").show();
         $(".popup-bg").on("click", function (event) {
             $(".popup-bg").hide();
-            $(".popup-buttons").hide();
+            $("#sosi-button, #segund, #tercer").hide();
         });
     });
 });
