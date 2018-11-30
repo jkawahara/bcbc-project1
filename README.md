@@ -1,13 +1,13 @@
 # Getting Started - NightCrawler
 ### 1. Why / Background
   * This is Berkeley Coding Boot Camp (BCBC) project 1 group assignment.
-    * The BCBC curriculum generally focuses on JavaScript along with HTML/CSS, using the MERN (MongoDB, Express, React, Node) software stack, to teach web development skills across HTML/CSS/Javascript. 
+    * The BCBC curriculum generally focuses on JavaScript along with HTML/CSS, using the MERN (MongoDB, Express, React, Node) software stack, to teach web development skills across the client and server. 
   * The "NightCrawler" mobile web-based app came out of the need to enable users to always have viable route options that ensure safety.
     * Imagine a late night out in San Francisco with friends. After the food, drinks and festivities, how do you get home safely? Which route options do you have and how do you determine the best route?
     * Although existing technologies provide dynamic navigation, the presented data visuals don't incorporate safety data well.
     * NightCrawler's vision is an enabled user, with safety relevant data-visuals, to make the best decision in selecting from the various route options. 
 
-### 2. What / Objectives
+### 2. What / Objectives / User Stories
   * This project development, from design through deployment of the mobile web-based application, NightCrawler, used web development technologies on the client side, HTML/CSS/DOM/JavaScript, along with various libraries including Bootstrap and jQuery.
   * Data resides in a realtime database, offered by Firebase via Web API
   * Additionally, the following APIs were used to query available maps and crime databases:
@@ -17,23 +17,6 @@
       * Street View API for Streetview capability
     * [DataSF](https://datasf.org/opendata/)
       * Socrata Open Data API (SODAPI) for San Francisco Data, specific to Police Department Incident Reports
-  * Wireframe:
-    * View 1
-      * ![nightcrawler-readme.png](assets/images/nightcrawler-readme.png "app UI")
-    * View 2
-      * 
-    * View 3
-      * 
-    * View 4
-      * 
-    * View 5
-      * 
-
-### 3. How / User Stories
-  * The scope of the project fit well into [Agile methodology with Scrum and Kanban frameworks](https://en.wikipedia.org/wiki/Agile_software_development). GitHub's built-in tools supported project exectution:
-    * [Projects](https://github.com/jkawahara/bcbc-project1/projects/1) view leveraged as Kanban board for documenting user stories and overall progress 
-    * [Issues](https://github.com/jkawahara/bcbc-project1/issues) view leveraged as Issue tracking for user stories, features and bug report
-    * Project team actively participated in Srum including daily standups
   * User Stories, by categorization:
     * User Interface Design
       * Build map layer as primary view
@@ -50,6 +33,48 @@
     * Configure, connect and read/write data from/to Firebase Realtime database
       * Define realtime data requirements for storage of user profile in Firebase 
 
+### 3. How / Design Description
+  * The scope of the project fit well into [Agile methodology with Scrum and Kanban frameworks](https://en.wikipedia.org/wiki/Agile_software_development). GitHub's built-in tools supported project exectution:
+    * [Projects](https://github.com/jkawahara/bcbc-project1/projects/1) view leveraged as Kanban board for documenting user stories and overall progress 
+    * [Issues](https://github.com/jkawahara/bcbc-project1/issues) view leveraged as Issue tracking for user stories, features and bug report
+    * Project team actively participated in Srum including daily standups
+  * Wireframe Buildout:
+    * Design Description (Bootstrap CSS library, custom CSS styles and HTML to render primary static Map View)
+      * Primary static Map View
+        * ![map-layer-primary-view-readme.png](assets/images/map-layer-primary-view-readme.png "primary view")
+        * Mobile responsiveness for iPhone X mobile platform
+        * Header container includes
+          * Navbar
+            * Navbartoggler to open Settings
+            * NightCrawler logo and name
+        * Main section container includes jumbotron
+          * Mapsearch includes input for searching locations
+          * MapFrame
+            * Fullscreen toggle, origin input, destination input, radio input for Walking, Transit or Driving, street view and buttons for zoom in and zoom out 
+          * SOS button opens popup
+        * Footer container includes branding quote
+      * Heatmap View
+        * ![.png](bcbc-project1/assets/images/.png "heatmap view")
+        * Description
+      * Street View
+        * ![.png](bcbc-project1/assets/images/.png "street view") 
+        * Description TBD under construction
+      * Settings View
+        * ![settings-dropdown-readme.png](assets/images/settings-dropdown-readme.png "settings dropdown")
+        * Form fields for Name, Username, Emergency Contact, Remember me checkbox, Log In button, User Options for Option One checkbox and Option Two checkbox
+      * SOS Popup
+        * ![sos-popup-readme.png](assets/images/sos-popup-readme.png "sos popup")
+        * Buttons to submit 911, Lyft and emergency contact
+  * Functionality:
+    * Design Description (JavaScript, jQuery library, Popper.js library, AJAX, Google Maps Platform API, DataSF API, Firebase Realtime Database)
+      * JavaScript
+      * jQuery
+      * Popper.js
+      * AJAX
+      * Google Maps Platform APIs
+      * DataSF API
+      * Firebase Realtime Database
+
   * Prerequisites for Development:
     * MacBook Air (Intel Core i7, 2.2 GHz, 1 Processor, 2 Cores, 8GB)
     * Latitude E6430 (Intel Core i7, 3 GHz, 1 Processor, 2 Cores, 8GB)
@@ -63,7 +88,9 @@
     * Custom HTML / CSS / JavaScript.
     * [Firebase](https://www.gstatic.com/firebasejs/5.5.9/firebase.js)
     * [Bootstrap](https://getbootstrap.com/docs/4.1/getting-started/introduction/)
+    * [Font Awesome](https://fontawesome.com/start)
     * [jQuery](https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js)
+    * [Popper.js](https://popper.js.org/popper-documentation.html)
     * Google Maps Platform:
       * [Static Maps API](https://developers.google.com/maps/documentation/maps-static/intro)
       * [Maps JavaScript API](https://developers.google.com/maps/documentation/javascript/tutorial) for Heatmap capability
@@ -82,7 +109,7 @@
           * /images
             * various image files
           * /js
-            * config.js - private API keys file
+            * config.js - private API keys file; ignored by git tracking
             * js.js
         * index.html
         * LICENSE
@@ -110,4 +137,4 @@
   * This project is licensed under the [MIT License](LICENSE).
 
 ## Acknowledgments
-  * Thanks to BCBC program personnel for their guidance on this project.
+  * Thanks to BCBC program personnel, especially our instructor, David Hallinan,  for their guidance on this project.
