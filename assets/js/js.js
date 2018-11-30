@@ -59,7 +59,6 @@ function dangerData(data){
   }
 }
 
-
 function sortData(dangerStat){
   var j = 0;
   for (var i = 0; i<5000; i++){
@@ -182,6 +181,47 @@ $(document).ready(function () {
     });
 });
 
+
+
+function initMap() {
+    var directionsService = new google.maps.DirectionsService();
+    var directionsDisplay = new google.maps.DirectionsRenderer();
+    var san_francisco = new google.maps.LatLng(37.773972, -122.431297);
+    var mapOptions = {
+        mapTypeControl: false,
+        zoom: 12,
+        center: san_francisco
+    }
+    var map = new google.maps.Map(document.getElementById('map'), mapOptions);
+    directionsDisplay.setMap(map);
+    new AutocompleteDirectionsHandler(map);
+
+    var marker = new google.maps.Marker({
+        position: {
+            lat: 37.8720,
+            lng: -122.2713
+        },
+        map: map,
+        draggable: true
+    });
+
+    var searchBox = new google.maps.places.SearchBox(document.getElementById('mapsearch'));
+
+    google.maps.event.addListener(searchBox, 'places_changed', function () {
+        var places = searchBox.getPlaces();
+        var bounds = new google.maps.LatLngBounds();
+        var i, place;
+
+        for (i = 0; place = places[i]; i++) {
+
+            bounds.extend(place.geometry.location);
+            marker.setPosition(place.geometry.location);
+        }
+        map.fitBounds(bounds);
+        mpa.setZoom(10);
+    })
+}
+
 var map, heatmap;
 
 function initMap() {
@@ -240,46 +280,6 @@ function getPoints(array) {
   console.log(heatPoints);
   return heatPoints;
   
-}
-
-function initMap() {
-    var directionsService = new google.maps.DirectionsService();
-    var directionsDisplay = new google.maps.DirectionsRenderer();
-    var san_francisco = new google.maps.LatLng(37.773972, -122.431297);
-    var mapOptions = {
-        mapTypeControl: false,
-        zoom: 12,
-        center: san_francisco
-    }
-    var map = new google.maps.Map(document.getElementById('map'), mapOptions);
-    directionsDisplay.setMap(map);
-    new AutocompleteDirectionsHandler(map);
-
-    var marker = new google.maps.Marker({
-        position: {
-            lat: 37.8720,
-            lng: -122.2713
-        },
-        map: map,
-        draggable: true
-    });
-
-    var searchBox = new google.maps.places.SearchBox(document.getElementById('mapsearch'));
-
-    google.maps.event.addListener(searchBox, 'places_changed', function () {
-        var places = searchBox.getPlaces();
-        var bounds = new google.maps.LatLngBounds();
-        var i, place;
-
-        for (i = 0; place = places[i]; i++) {
-
-            bounds.extend(place.geometry.location);
-            marker.setPosition(place.geometry.location);
-        }
-        map.fitBounds(bounds);
-        mpa.setZoom(10);
-    })
-
 }
 
 /**
