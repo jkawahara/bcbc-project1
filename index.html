@@ -76,7 +76,10 @@
     </div>
     <div class="jumbotron jumbotron-fluid">
         <div class="col-md-12">
-            <form role="form">
+            <label for="mapsearch"><i class="fas fa-search size:5x"></i></label>
+            <input id="mapsearch" type="text" placeholder="  Where to..?" style="width: 340px">
+
+            <form role="form" style="display:none">
                 <div class="form-group">
                     <label for="origin-input"><i class="fab fa-ethereum"></i> Where to...?</label>
                     <input id="origin-input" class="controls" type="text" placeholder="Enter an origin location">
@@ -95,19 +98,24 @@
             <div class="mapFrame">
                 <div id="map" style="width:375px;height:550px"></div>
             </div>
-            <button type="submit" class="btn btn-danger" id="run-search"><i class="fa fa-exclamation"></i><a href= "tel: 911">SOS</a></button>
+            <button type="submit" class="btn btn-danger" id="run-search"><i class="fa fa-exclamation"></i>SOS</button>
             <br>
         </div>
         <footer>
             <h6 class="text-center" class="fixed-bottom"><small>Developed by 4 awesome people!<i class="fa fa-heart"></i></small></h6>
         </footer>
     </div>
-    <div class="popup-bg"></div>
-    <div class="popup-buttons" id="popup-buttons">
-        <button type="submit" class="btn btn-danger"><i class="fa fa-exclamation"></i><a href="tel: 911">Call 911</a></button>
-        <button type="submit" class="btn btn-danger"><a href="lyft://">Lyft</a></button>
-        <button type="submit" class="btn btn-danger"><a href="" id="emergency-link" >Emergency Contact</a></button>
+    <!-- <div class="popup-bg"> -->
+    <div class="popup-bg" id="popup-buttons">
+        <button type="submit" class="btn btn-danger" id="primer"><i class="fa fa-exclamation"></i> <a href="tel: 911">
+            CALL
+            911</a></button>
+
+        <button type="submit" class="btn btn-danger" id="segund"><a href="https://www.lyft.com/">Lyft</a></button>
+        <button type="submit" class="btn btn-danger" id="tercer"><a href="" id="emergency-link">Emergency Contact</a></button>
+
     </div>
+    <!-- </div> -->
 
 
 
