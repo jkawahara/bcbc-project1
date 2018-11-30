@@ -11,8 +11,11 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
         crossorigin="anonymous">
     <link rel="stylesheet" href="assets/css/style.css">
-    <script src="https://www.gstatic.com/firebasejs/5.5.9/firebase.js"></script>
 
+    <!-- Firebase app, database-->
+    <script src="https://www.gstatic.com/firebasejs/5.5.9/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.5.9/firebase-database.js"></script>
+    <script src="config.js"></script>
 
 
 </head>
@@ -96,37 +99,41 @@
             </form>
 
             <div class="mapFrame">
+
                 <div id="map" style="width:375px;height:550px"></div>
             </div>
             <button type="submit" class="btn btn-danger" id="run-search"><i class="fa fa-exclamation"></i>SOS</button>
+
             <br>
         </div>
         <footer>
             <h6 class="text-center" class="fixed-bottom"><small>Developed by 4 awesome people!<i class="fa fa-heart"></i></small></h6>
         </footer>
+        <div class="popup-bg"></div>
+
+
+        <div class="round-button" id="sosi-button">
+            <div class="round-button-circle">
+                <a href="tel: 911">CALL 911</a>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-danger popup-button" id="segund"><a href="lyft://">Lyft</a></button>
+        <button type="submit" class="btn btn-danger popup-button" id="tercer"><a href="" id="emergency-link">Emergency Contact</a></button>
+
     </div>
-    <!-- <div class="popup-bg"> -->
-    <div class="popup-bg" id="popup-buttons">
-        <button type="submit" class="btn btn-danger" id="primer"><i class="fa fa-exclamation"></i> <a href="tel: 911">
-            CALL
-            911</a></button>
-
-        <button type="submit" class="btn btn-danger" id="segund"><a href="https://www.lyft.com/">Lyft</a></button>
-        <button type="submit" class="btn btn-danger" id="tercer"><a href="" id="emergency-link">Emergency Contact</a></button>
-
-    </div>
-    <!-- </div> -->
-
-
-
+  
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-        crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-        crossorigin="anonymous"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDXnK4wJhL9hWZZNeG2Ykh6R9Lsq5YTGAk&libraries=places&callback=initMap" async defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+        var JSLink = "https://maps.googleapis.com/maps/api/js?key=" + config.google_map.key + "&libraries=places&callback=initMap";
+        var JSElement = document.createElement('script');
+        JSElement.src = JSLink;
+        JSElement.onload = OnceLoaded;
+        document.getElementsByTagName('head')[0].appendChild(JSElement);
+        function OnceLoaded() {}
+    </script>
     <script src="assets/js/js.js"></script>
-
 
 </body>
 
