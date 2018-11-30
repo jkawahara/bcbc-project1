@@ -1,7 +1,7 @@
 # Getting Started - NightCrawler
 ### 1. Why / Background
   * This is Berkeley Coding Boot Camp (BCBC) project 1 group assignment.
-    * The BCBC curriculum generally focuses on JavaScript along with HTML/CSS, using the MERN (MongoDB, Express, React, Node) software stack, to teach web development skills across HTML/CSS/Javascript. 
+    * The BCBC curriculum generally focuses on JavaScript along with HTML/CSS, using the MERN (MongoDB, Express, React, Node) software stack, to teach web development skills across the client and server. 
   * The "NightCrawler" mobile web-based app came out of the need to enable users to always have viable route options that ensure safety.
     * Imagine a late night out in San Francisco with friends. After the food, drinks and festivities, how do you get home safely? Which route options do you have and how do you determine the best route?
     * Although existing technologies provide dynamic navigation, the presented data visuals don't incorporate safety data well.
@@ -20,14 +20,19 @@
   * Wireframe:
     * View 1
       * ![nightcrawler-readme.png](assets/images/nightcrawler-readme.png "app UI")
+      * Description
     * View 2
       * 
+      * Description
     * View 3
       * 
+      * Description
     * View 4
       * 
+      * Description
     * View 5
       * 
+      * Description
 
 ### 3. How / User Stories
   * The scope of the project fit well into [Agile methodology with Scrum and Kanban frameworks](https://en.wikipedia.org/wiki/Agile_software_development). GitHub's built-in tools supported project exectution:
@@ -110,4 +115,4 @@
   * This project is licensed under the [MIT License](LICENSE).
 
 ## Acknowledgments
-  * Thanks to BCBC program personnel for their guidance on this project.
+  * Thanks to BCBC program personnel, especially our instructor, David Hallinan,  for their guidance on this project.
