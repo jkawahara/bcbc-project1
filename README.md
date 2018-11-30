@@ -42,18 +42,17 @@
     * Design Description (Bootstrap CSS library, custom CSS styles and HTML to render primary static Map View)
       * Primary static Map View
         * ![map-layer-primary-view-readme.png](assets/images/map-layer-primary-view-readme.png "primary view")
-        * 
-          * Mobile responsiveness for iPhone X mobile platform
-          * Header container includes
-            * Navbar
-              * Navbartoggler to open Settings
-              * NightCrawler logo and name
-          * Main section container includes jumbotron
-            * Mapsearch includes input for searching locations
-            * MapFrame
-              * Fullscreen toggle, origin input, destination input, radio input for Walking, Transit or Driving, street view and buttons for zoom in and zoom out 
-            * SOS button opens popup
-          * Footer container includes branding quote
+        * Mobile responsiveness for iPhone X mobile platform
+        * Header container includes
+          * Navbar
+            * Navbartoggler to open Settings
+            * NightCrawler logo and name
+        * Main section container includes jumbotron
+          * Mapsearch includes input for searching locations
+          * MapFrame
+            * Fullscreen toggle, origin input, destination input, radio input for Walking, Transit or Driving, street view and buttons for zoom in and zoom out 
+          * SOS button opens popup
+        * Footer container includes branding quote
       * Heatmap View
         * ![.png](bcbc-project1/assets/images/.png "heatmap view")
         * Description
