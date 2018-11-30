@@ -55,11 +55,14 @@
           * SOS button opens popup
         * Footer container includes branding quote
       * Heatmap View
-        * ![.png](bcbc-project1/assets/images/.png "heatmap view")
-        * Description
+        * ![.png](assets/images/.png "heatmap view")
+        * Overlay of crime danger spots
       * Street View
-        * ![.png](bcbc-project1/assets/images/.png "street view") 
-        * Description TBD under construction
+        * ![street-view-readme.png](assets/images/street-view-readme.png "street view") 
+        * Images at street level
+      * Route View
+        * ![route-view-readme.png](assets/images/route-view-readme.png "route view") 
+        * Route displayed from origin to destination
       * Settings View
         * ![settings-dropdown-readme.png](assets/images/settings-dropdown-readme.png "settings dropdown")
         * Form fields for Name, Username, Emergency Contact, Remember me checkbox, Log In button, User Options for Option One checkbox and Option Two checkbox
