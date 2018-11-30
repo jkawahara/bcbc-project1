@@ -1,5 +1,6 @@
 
 var dangerStat = [];
+
 var printedPoints = {
   x: [],
   y: []
@@ -55,6 +56,7 @@ function dangerData(data){
       printedPoints.y.push(data[i].y);
 
     }
+  }
 }
 
 
@@ -146,19 +148,6 @@ function getLongLat(myLocation, array, radius){
   }
   return radLongLat;
 }
-
-$(document).ready(function () {
-    var config = {
-        apiKey: "AIzaSyBbKN_TW5CuyC1tyDa_TZZpb_b6jDj5x8I",
-        authDomain: "nightcrawlers-1543299103112.firebaseapp.com",
-        databaseURL: "https://nightcrawlers-1543299103112.firebaseio.com",
-        projectId: "nightcrawlers-1543299103112",
-        storageBucket: "nightcrawlers-1543299103112.appspot.com",
-        messagingSenderId: "122175939714"
-    };
-
-    firebase.initializeApp(config);
-
   
 $(document).ready(function () {
     firebase.initializeApp(config.firebase);
@@ -374,6 +363,8 @@ AutocompleteDirectionsHandler.prototype.route = function () {
     });
 };
 
+
+
 function calcRoute() {
     var start = document.getElementById('origin-input').value;
     var end = document.getElementById('destination-input').value;
@@ -387,4 +378,4 @@ function calcRoute() {
             directionsDisplay.setDirections(result);
         }
     });
-}
+  }
