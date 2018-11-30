@@ -81,17 +81,7 @@ function sortData(dangerStat) {
 
 
 $(document).ready(function () {
-
-    var config = {
-        apiKey: "AIzaSyBbKN_TW5CuyC1tyDa_TZZpb_b6jDj5x8I",
-        authDomain: "nightcrawlers-1543299103112.firebaseapp.com",
-        databaseURL: "https://nightcrawlers-1543299103112.firebaseio.com",
-        projectId: "nightcrawlers-1543299103112",
-        storageBucket: "nightcrawlers-1543299103112.appspot.com",
-        messagingSenderId: "122175939714"
-    };
-
-    firebase.initializeApp(config);
+    firebase.initializeApp(config.firebase);
     var database = firebase.database();
 
     var name = "";
