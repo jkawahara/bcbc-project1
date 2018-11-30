@@ -15,6 +15,7 @@
       * Static Maps API
       * Maps JavaScript API for Heatmap capability
       * Street View API for Streetview capability
+      * Directions API for routes capability
     * [DataSF](https://datasf.org/opendata/)
       * Socrata Open Data API (SODAPI) for San Francisco Data, specific to Police Department Incident Reports
   * User Stories, by categorization:
@@ -39,7 +40,7 @@
     * [Issues](https://github.com/jkawahara/bcbc-project1/issues) view leveraged as Issue tracking for user stories, features and bug report
     * Project team actively participated in Srum including daily standups
   * Wireframe Buildout:
-    * Design Description (Bootstrap CSS library, custom CSS styles and HTML to render primary static Map View)
+    * Interface Description (Bootstrap CSS library, Popper.js library, Font Awesome CSS library, custom CSS styles and HTML to render primary static Map View) - refer to index.html, style.css files along with Bootstrap CSS library
       * Primary static Map View
         * ![map-layer-primary-view-readme.png](assets/images/map-layer-primary-view-readme.png "primary view")
         * Mobile responsiveness for iPhone X mobile platform
@@ -66,14 +67,24 @@
         * ![sos-popup-readme.png](assets/images/sos-popup-readme.png "sos popup")
         * Buttons to submit 911, Lyft and emergency contact
   * Functionality:
-    * Design Description (JavaScript, jQuery library, Popper.js library, AJAX, Google Maps Platform API, DataSF API, Firebase Realtime Database)
-      * JavaScript
-      * jQuery
-      * Popper.js
-      * AJAX
-      * Google Maps Platform APIs
-      * DataSF API
-      * Firebase Realtime Database
+    * Design Description (JavaScript, jQuery library, AJAX, Google Maps Platform API, DataSF API, Firebase Realtime Database) - refer to js.js and config.js files.
+      * JavaScript design accounts for proper execution context (global and functional), consistent with execution stack with a last in, first out structure. Variables are defined in both global and functional execution contexts. Design includes both named and anonymous functions, specifically using anonymous functions for AJAX promise and prototypes for map function constructor. Overall, a modular design approach has been achieved. JavaScript js.js file is called from script link, just before closing body element within index.html file.   
+        * jQuery library leveraged, in addition to vanilla DOM manipulation, to select DOM nodes for dynamic updates to interface. Currently, jQuery library is called from script links in both the head and end of body elements within index.html file.
+          * DOM manipulation targets the following to enable a dynamic interface: Settings form components, mapFrame components
+        * AJAX leveraged for exchanging information and obtaining crime data, JSON structured, using SODAPI; jQuery framework used for AJAX exchange and promise on returned crime data.
+      * Configuration, connection to APIs along with query or read/write 
+        * Google Maps Platform wrappers the following APIs with a single API key
+          * Static Maps API- rendering primary static map view on interface
+          * Maps JavaScript API for Heatmap capability- reads in the crime data from the SODAPI to generate an overlay of danger zones to avoid on routed options.
+            * Relevant modules: initMap, toggleHeatmap, changeGradient, changeRadius, changeOpacity, getPoints
+          * Street View API for Streetview capability- renders images of routed options to verify  specific neighborhoods
+          * Directions API for routes capability- searches for specific locations along with providing dynamic navigation
+            * Relevant modules: initMap, AutocompleteDirectionsHandler constructor, setupClickListener prototype, setupPlaceChangedListener prototype, route prototype, calcRoute
+        * DataSF SODAPI- query Police Department Incident Reports to retrieve danger zones (assault, theft, burglary, robbery, vehicle theft) and store locations, longitude and lattitude points, in objects.
+          * Relevant modules: AJAX/promise, dangerData, sortData, getLongLat, (3) getLongLat- each passes different argument combinations (myLocation, array, radius), mileConverter, kmConverter 
+        * Firebase Realtime Database- stores name and emergency contact of user
+          * Relevant modules: #logInBnt on click listener, database.ref().on watcher, 
+    
 
   * Prerequisites for Development:
     * MacBook Air (Intel Core i7, 2.2 GHz, 1 Processor, 2 Cores, 8GB)
@@ -95,6 +106,7 @@
       * [Static Maps API](https://developers.google.com/maps/documentation/maps-static/intro)
       * [Maps JavaScript API](https://developers.google.com/maps/documentation/javascript/tutorial) for Heatmap capability
       * [Street View API](https://developers.google.com/maps/documentation/streetview/intro) for Streetview capability
+      * [Directions API](https://developers.google.com/maps/documentation/directions/start) for routes capability
     * DataSF:
       * [Socrata Open Data API (SODAPI)](https://dev.socrata.com/foundry/data.sfgov.org/cuks-n6tp) for San Francisco Data, specific to Police Department Incident Reports
 
