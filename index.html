@@ -11,7 +11,11 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
         crossorigin="anonymous">
     <link rel="stylesheet" href="assets/css/style.css">
-    <script src="https://www.gstatic.com/firebasejs/5.5.9/firebase.js"></script>
+
+    <!-- Firebase app, database-->
+    <script src="https://www.gstatic.com/firebasejs/5.5.9/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.5.9/firebase-database.js"></script>
+    <script src="config.js"></script>
 
 
 </head>
@@ -75,40 +79,61 @@
     </div>
     <div class="jumbotron jumbotron-fluid">
         <div class="col-md-12">
-            <form role="form">
+            <label for="mapsearch"><i class="fas fa-search size:5x"></i></label>
+            <input id="mapsearch" type="text" placeholder="  Where to..?" style="width: 340px">
+
+            <form role="form" style="display:none">
                 <div class="form-group">
-                    <label for="search"><i class="fab fa-ethereum"></i> Where to...?</label>
-                    <input type="text" class="form-control" id="search-term">
+                    <label for="origin-input"><i class="fab fa-ethereum"></i> Where to...?</label>
+                    <input id="origin-input" class="controls" type="text" placeholder="Enter an origin location">
+                    <input id="destination-input" class="controls" type="text" placeholder="Enter a destination location">
+                </div>
+                <div id="mode-selector" class="controls">
+                    <input type="radio" name="type" id="changemode-walking" checked="checked">
+                    <label for="changemode-walking">Walking</label>
+                    <input type="radio" name="type" id="changemode-transit">
+                    <label for="changemode-transit">Transit</label>
+                    <input type="radio" name="type" id="changemode-driving">
+                    <label for="changemode-driving">Driving</label>
                 </div>
             </form>
 
             <div class="mapFrame">
-                <iframe width="375" height="550" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q=place_id:" + mapKey
-                allowfullscreen></iframe>
-            </div>
 
-            <button type="submit" class="btn btn-danger" id="run-search"><i class="fa fa-exclamation"></i><a href= "tel: 911">SOS</a></button>
+                <div id="map" style="width:375px;height:550px"></div>
+            </div>
+            <button type="submit" class="btn btn-danger" id="run-search"><i class="fa fa-exclamation"></i>SOS</button>
+
             <br>
         </div>
         <footer>
             <h6 class="text-center" class="fixed-bottom"><small>Developed by 4 awesome people!<i class="fa fa-heart"></i></small></h6>
         </footer>
-    </div>
-    <div class="popup-bg"></div>
-    <div class="popup-buttons" id="popup-buttons">
-        <button type="submit" class="btn btn-danger"><i class="fa fa-exclamation"></i><a href="tel: 911">Call 911</a></button>
-        <button type="submit" class="btn btn-danger"><a href="lyft://">Lyft</a></button>
-        <button type="submit" class="btn btn-danger"><a href="" id="emergency-link" >Emergency Contact</a></button>
-    </div>
+        <div class="popup-bg"></div>
 
+
+        <div class="round-button" id="sosi-button">
+            <div class="round-button-circle">
+                <a href="tel: 911">CALL 911</a>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-danger popup-button" id="segund"><a href="lyft://">Lyft</a></button>
+        <button type="submit" class="btn btn-danger popup-button" id="tercer"><a href="" id="emergency-link">Emergency Contact</a></button>
+
+    </div>
+  
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-        crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+        var JSLink = "https://maps.googleapis.com/maps/api/js?key=" + config.google_map.key + "&libraries=places&callback=initMap";
+        var JSElement = document.createElement('script');
+        JSElement.src = JSLink;
+        JSElement.onload = OnceLoaded;
+        document.getElementsByTagName('head')[0].appendChild(JSElement);
+        function OnceLoaded() {}
+    </script>
     <script src="assets/js/js.js"></script>
-
-
 </body>
 
 </html>
