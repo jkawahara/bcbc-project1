@@ -41,7 +41,7 @@
   * Wireframe Buildout:
     * Design Description (Bootstrap CSS library, custom CSS styles and HTML to render primary static Map View)
       * Primary static Map View
-        * ![map-layer-primary-view-readme.png](bcbc-project1/assets/images/map-layer-primary-view-readme.png "primary view")
+        * ![map-layer-primary-view-readme.png](assets/images/map-layer-primary-view-readme.png "primary view")
         * 
           * Mobile responsiveness for iPhone X mobile platform
           * Header container includes
@@ -61,10 +61,10 @@
         * ![.png](bcbc-project1/assets/images/.png "street view") 
         * Description TBD under construction
       * Settings View
-        * ![settings-dropdown-readme.png](bcbc-project1/assets/images/settings-dropdown-readme.png "settings dropdown")
+        * ![settings-dropdown-readme.png](assets/images/settings-dropdown-readme.png "settings dropdown")
         * Form fields for Name, Username, Emergency Contact, Remember me checkbox, Log In button, User Options for Option One checkbox and Option Two checkbox
       * SOS Popup
-        * ![sos-popup-readme.png](bcbc-project1/assets/images/sos-popup-readme.png "sos popup")
+        * ![sos-popup-readme.png](assets/images/sos-popup-readme.png "sos popup")
         * Buttons to submit 911, Lyft and emergency contact
   * Functionality:
     * Design Description (JavaScript, jQuery library, Popper.js library, AJAX, Google Maps Platform API, DataSF API, Firebase Realtime Database)
