@@ -17,22 +17,33 @@
       * Street View API for Streetview capability
     * [DataSF](https://datasf.org/opendata/)
       * Socrata Open Data API (SODAPI) for San Francisco Data, specific to Police Department Incident Reports
-  * Wireframe:
-    * View 1
-      * ![nightcrawler-readme.png](assets/images/nightcrawler-readme.png "app UI")
+  * Wireframe Buildout:
+    * Primary static Map View
+      * ![map-layer-primary-view-readme.png](bcbc-project1/assets/images/map-layer-primary-view-readme.png "primary view")
+      * Design Description (Bootstrap CSS library, custom CSS styles and HTML to render primary static Map View)
+        * Mobile responsiveness for iPhone X mobile platform
+        * Header container includes
+          * Navbar
+            * Navbartoggler to open Settings
+            * NightCrawler logo and name
+        * Main section container includes jumbotron
+          * Mapsearch includes input for searching locations
+          * MapFrame
+            * Fullscreen toggle, origin input, destination input, radio input for Walking, Transit or Driving, street view and buttons for zoom in and zoom out 
+          * SOS button opens popup
+        * Footer container includes branding quote
+    * Heatmap View
+      * ![.png](bcbc-project1/assets/images/.png "heatmap view")
       * Description
-    * View 2
-      * 
-      * Description
-    * View 3
-      * 
-      * Description
-    * View 4
-      * 
-      * Description
-    * View 5
-      * 
-      * Description
+    * Street View
+      * ![.png](bcbc-project1/assets/images/.png "street view") 
+      * Description TBD under construction
+    * Settings View
+      * ![settings-dropdown-readme.png](bcbc-project1/assets/images/settings-dropdown-readme.png "settings dropdown")
+      * Form fields for Name, Username, Emergency Contact, Remember me checkbox, Log In button, User Options for Option One checkbox and Option Two checkbox
+    * SOS Popup
+      * ![sos-popup-readme.png](bcbc-project1/assets/images/sos-popup-readme.png "sos popup")
+      * Buttons to submit 911, Lyft and emergency contact
 
 ### 3. How / User Stories
   * The scope of the project fit well into [Agile methodology with Scrum and Kanban frameworks](https://en.wikipedia.org/wiki/Agile_software_development). GitHub's built-in tools supported project exectution:
@@ -68,6 +79,7 @@
     * Custom HTML / CSS / JavaScript.
     * [Firebase](https://www.gstatic.com/firebasejs/5.5.9/firebase.js)
     * [Bootstrap](https://getbootstrap.com/docs/4.1/getting-started/introduction/)
+    * [Font Awesome](https://fontawesome.com/start)
     * [jQuery](https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js)
     * Google Maps Platform:
       * [Static Maps API](https://developers.google.com/maps/documentation/maps-static/intro)
@@ -87,7 +99,7 @@
           * /images
             * various image files
           * /js
-            * config.js - private API keys file
+            * config.js - private API keys file; ignored by git tracking
             * js.js
         * index.html
         * LICENSE
