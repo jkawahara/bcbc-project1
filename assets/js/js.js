@@ -1,4 +1,8 @@
 
+
+
+var navigation = true;
+
 var dangerStat = [];
 
 var printedPoints = {
@@ -45,16 +49,16 @@ $.ajax({
   //console.log(data);
   dangerData(data);
   sortData(data);
-  console.log(longLatAssault);
+  
 });
 
 function dangerData(data){
   for (var i = 0; i<5000; i++){
+
     if (data[i].category == "ASSAULT" || data[i].category == "LARCENY/THEFT" || data[i].category == "BURGLARY" || data[i].category == "ROBBERY" || data[i].category == "VEHICLE THEFT"){
       dangerStat[i] = data[i];
       printedPoints.x.push(data[i].x);
       printedPoints.y.push(data[i].y);
-
     }
   }
 }
@@ -181,6 +185,195 @@ $(document).ready(function () {
     });
 });
 
+var map, heatmap;
+// @constructor
+ 
+
+function AutocompleteDirectionsHandler(map) {
+  this.map = map;
+  this.originPlaceId = null;
+  this.destinationPlaceId = null;
+  this.travelMode = 'WALKING';
+  var originInput = document.getElementById('origin-input');
+  var destinationInput = document.getElementById('destination-input');
+  var modeSelector = document.getElementById('mode-selector');
+  this.directionsService = new google.maps.DirectionsService;
+  this.directionsDisplay = new google.maps.DirectionsRenderer;
+  this.directionsDisplay.setMap(map);
+
+  var originAutocomplete = new google.maps.places.Autocomplete(
+      originInput, {placeIdOnly: true});
+  var destinationAutocomplete = new google.maps.places.Autocomplete(
+      destinationInput, {placeIdOnly: true});
+
+  this.setupClickListener('changemode-walking', 'WALKING');
+  this.setupClickListener('changemode-transit', 'TRANSIT');
+  this.setupClickListener('changemode-driving', 'DRIVING');
+
+  this.setupPlaceChangedListener(originAutocomplete, 'ORIG');
+  this.setupPlaceChangedListener(destinationAutocomplete, 'DEST');
+
+  this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(originInput);
+  this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(destinationInput);
+  this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(modeSelector);
+}
+
+// Sets a listener on a radio button to change the filter type on Places
+// Autocomplete.
+AutocompleteDirectionsHandler.prototype.setupClickListener = function (id, mode) {
+  var radioButton = document.getElementById(id);
+  var me = this;
+  radioButton.addEventListener('click', function () {
+      me.travelMode = mode;
+      me.route();
+  });
+};
+
+AutocompleteDirectionsHandler.prototype.setupPlaceChangedListener = function (autocomplete, mode) {
+  var me = this;
+  autocomplete.bindTo('bounds', this.map);
+  autocomplete.addListener('place_changed', function () {
+      var place = autocomplete.getPlace();
+      if (!place.place_id) {
+          window.alert("Please select an option from the dropdown list.");
+          return;
+      }
+      if (mode === 'ORIG') {
+          me.originPlaceId = place.place_id;
+      } else {
+          me.destinationPlaceId = place.place_id;
+      }
+      me.route();
+  });
+};
+
+AutocompleteDirectionsHandler.prototype.route = function () {
+  if (!this.originPlaceId || !this.destinationPlaceId) {
+      return;
+  }
+  var me = this;
+
+  this.directionsService.route({
+      origin: {'placeId': this.originPlaceId},
+      destination: {'placeId': this.destinationPlaceId},
+      travelMode: this.travelMode
+  }, function (response, status) {
+      if (status === 'OK') {
+          me.directionsDisplay.setDirections(response);
+      } else {
+          window.alert('Directions request failed due to ' + status);
+      }
+  });
+};
+
+/*heatMap Info*/
+
+$(document).on("click","#toggleMap", function() {
+  if (navigation){
+    $("#toggleMap").text("Toggle Navigation");
+    navigation = false;
+    initMapHeat();
+    console.log("false");
+  }else{
+    $("#toggleMap").text("Toggle HeatMap");
+    navigation = true;
+    initMap();
+    console.log("true");
+  }
+});
+
+function initMapHeat() {
+  var dService = new google.maps.DirectionsService();
+  var dDisplay = new google.maps.DirectionsRenderer();
+  var san_fran = new google.maps.LatLng(37.773972, -122.431297);
+  map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 13,
+    center: {lat: 37.775, lng: -122.434},
+    mapTypeId: 'roadmap',
+    mapTypeControl: false,
+    zoomControl: true,
+    streetViewControl: true,
+
+  });
+
+
+  heatmap = new google.maps.visualization.HeatmapLayer({
+    data: getPoints(printedPoints),
+    map: map
+  });
+}
+dDisplay.setMap(map);
+new AutocompleteDirectionsHandler(map);
+
+var marker = new google.maps.Marker({
+    position: {
+        lat: 37.8720,
+        lng: -122.2713
+    },
+    map: map,
+    draggable: true
+});
+
+var searchBox = new google.maps.places.SearchBox(document.getElementById('mapsearch'));
+
+google.maps.event.addListener(searchBox, 'places_changed', function () {
+    var places = searchBox.getPlaces();
+    var bounds = new google.maps.LatLngBounds();
+    var i, place;
+
+    for (i = 0; place = places[i]; i++) {
+
+        bounds.extend(place.geometry.location);
+        marker.setPosition(place.geometry.location);
+    }
+    map.fitBounds(bounds);
+    mpa.setZoom(10);
+});
+  
+
+function changeGradient() {
+  var gradient = [
+    'rgba(0, 255, 255, 0)',
+    'rgba(0, 255, 255, 1)',
+    'rgba(0, 191, 255, 1)',
+    'rgba(0, 127, 255, 1)',
+    'rgba(0, 63, 255, 1)',
+    'rgba(0, 0, 255, 1)',
+    'rgba(0, 0, 223, 1)',
+    'rgba(0, 0, 191, 1)',
+    'rgba(0, 0, 159, 1)',
+    'rgba(0, 0, 127, 1)',
+    'rgba(63, 0, 91, 1)',
+    'rgba(127, 0, 63, 1)',
+    'rgba(191, 0, 31, 1)',
+    'rgba(255, 0, 0, 1)'
+  ]
+  heatmap.set('gradient', heatmap.get('gradient') ? null : gradient);
+}
+
+function changeRadius() {
+  heatmap.set('radius', heatmap.get('radius') ? null : 90);
+}
+
+function changeOpacity() {
+  heatmap.set('opacity', heatmap.get('opacity') ? null : 0.5);
+}
+
+// Heatmap data: 500 Points
+function getPoints(array) {
+
+  var heatPoints = [new google.maps.LatLng(37.782551, -122.445368)];
+  
+  for (var i = 1; i < 1000 ; i++){
+   heatPoints.push(new google.maps.LatLng(array.y[i], array.x[i]));
+  }
+  //console.log((new google.maps.LatLng(array.y[i], array.x[i])));
+  console.log(heatPoints);
+  return heatPoints;
+}
+
+//HeatMap End
+
 
 
 function initMap() {
@@ -192,7 +385,9 @@ function initMap() {
         zoom: 12,
         center: san_francisco
     }
-    var map = new google.maps.Map(document.getElementById('map'), mapOptions);
+
+
+    map = new google.maps.Map(document.getElementById('map'), mapOptions);
     directionsDisplay.setMap(map);
     new AutocompleteDirectionsHandler(map);
 
@@ -220,149 +415,9 @@ function initMap() {
         map.fitBounds(bounds);
         mpa.setZoom(10);
     })
+
+
 }
-
-var map, heatmap;
-
-function initMap() {
-  map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 13,
-    center: {lat: 37.775, lng: -122.434},
-    mapTypeId: 'satellite'
-  });
-
-  heatmap = new google.maps.visualization.HeatmapLayer({
-    data: getPoints(printedPoints),
-    map: map
-  });
-}
-
-function toggleHeatmap() {
-  heatmap.setMap(heatmap.getMap() ? null : map);
-}
-
-function changeGradient() {
-  var gradient = [
-    'rgba(0, 255, 255, 0)',
-    'rgba(0, 255, 255, 1)',
-    'rgba(0, 191, 255, 1)',
-    'rgba(0, 127, 255, 1)',
-    'rgba(0, 63, 255, 1)',
-    'rgba(0, 0, 255, 1)',
-    'rgba(0, 0, 223, 1)',
-    'rgba(0, 0, 191, 1)',
-    'rgba(0, 0, 159, 1)',
-    'rgba(0, 0, 127, 1)',
-    'rgba(63, 0, 91, 1)',
-    'rgba(127, 0, 63, 1)',
-    'rgba(191, 0, 31, 1)',
-    'rgba(255, 0, 0, 1)'
-  ]
-  heatmap.set('gradient', heatmap.get('gradient') ? null : gradient);
-}
-
-function changeRadius() {
-  heatmap.set('radius', heatmap.get('radius') ? null : 20);
-}
-
-function changeOpacity() {
-  heatmap.set('opacity', heatmap.get('opacity') ? null : 0.2);
-}
-
-// Heatmap data: 500 Points
-function getPoints(array) {
-
-  var heatPoints = [];
-  
-  for (var i = 0; i<array.length; i++){
-    heatPoints.push(new google.maps.LatLng(array.x[i], array.y[i]));
-  }
-  console.log(heatPoints);
-  return heatPoints;
-  
-}
-
-/**
- * @constructor
- */
-function AutocompleteDirectionsHandler(map) {
-    this.map = map;
-    this.originPlaceId = null;
-    this.destinationPlaceId = null;
-    this.travelMode = 'WALKING';
-    var originInput = document.getElementById('origin-input');
-    var destinationInput = document.getElementById('destination-input');
-    var modeSelector = document.getElementById('mode-selector');
-    this.directionsService = new google.maps.DirectionsService;
-    this.directionsDisplay = new google.maps.DirectionsRenderer;
-    this.directionsDisplay.setMap(map);
-
-    var originAutocomplete = new google.maps.places.Autocomplete(
-        originInput, {placeIdOnly: true});
-    var destinationAutocomplete = new google.maps.places.Autocomplete(
-        destinationInput, {placeIdOnly: true});
-
-    this.setupClickListener('changemode-walking', 'WALKING');
-    this.setupClickListener('changemode-transit', 'TRANSIT');
-    this.setupClickListener('changemode-driving', 'DRIVING');
-
-    this.setupPlaceChangedListener(originAutocomplete, 'ORIG');
-    this.setupPlaceChangedListener(destinationAutocomplete, 'DEST');
-
-    this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(originInput);
-    this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(destinationInput);
-    this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(modeSelector);
-}
-
-// Sets a listener on a radio button to change the filter type on Places
-// Autocomplete.
-AutocompleteDirectionsHandler.prototype.setupClickListener = function (id, mode) {
-    var radioButton = document.getElementById(id);
-    var me = this;
-    radioButton.addEventListener('click', function () {
-        me.travelMode = mode;
-        me.route();
-    });
-};
-
-AutocompleteDirectionsHandler.prototype.setupPlaceChangedListener = function (autocomplete, mode) {
-    var me = this;
-    autocomplete.bindTo('bounds', this.map);
-    autocomplete.addListener('place_changed', function () {
-        var place = autocomplete.getPlace();
-        if (!place.place_id) {
-            window.alert("Please select an option from the dropdown list.");
-            return;
-        }
-        if (mode === 'ORIG') {
-            me.originPlaceId = place.place_id;
-        } else {
-            me.destinationPlaceId = place.place_id;
-        }
-        me.route();
-    });
-
-};
-
-AutocompleteDirectionsHandler.prototype.route = function () {
-    if (!this.originPlaceId || !this.destinationPlaceId) {
-        return;
-    }
-    var me = this;
-
-    this.directionsService.route({
-        origin: {'placeId': this.originPlaceId},
-        destination: {'placeId': this.destinationPlaceId},
-        travelMode: this.travelMode
-    }, function (response, status) {
-        if (status === 'OK') {
-            me.directionsDisplay.setDirections(response);
-        } else {
-            window.alert('Directions request failed due to ' + status);
-        }
-    });
-};
-
 
 
 function calcRoute() {
@@ -379,3 +434,5 @@ function calcRoute() {
         }
     });
   }
+
+  
