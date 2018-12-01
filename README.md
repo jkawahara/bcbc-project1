@@ -4,7 +4,7 @@
     * The BCBC curriculum generally focuses on JavaScript along with HTML/CSS, using the MERN (MongoDB, Express, React, Node) software stack, to teach web development skills across the client and server. 
   * The "NightCrawler" mobile web-based app came out of the need to enable users to always have viable route options that ensure safety.
     * Imagine a late night out in San Francisco with friends. After the food, drinks and festivities, how do you get home safely? Which route options do you have and how do you determine the best route?
-    * Although existing technologies provide dynamic navigation, the presented data visuals don't incorporate safety data well.
+    * Although existing mobile applications provide dynamic navigation, the presented data visuals don't incorporate safety data well.
     * NightCrawler's vision is an enabled user, with safety relevant data-visuals, to make the best decision in selecting from the various route options. 
 
 ### 2. What / Objectives / User Stories
@@ -35,10 +35,10 @@
       * Define realtime data requirements for storage of user profile in Firebase 
 
 ### 3. How / Design Description
-  * The scope of the project fit well into [Agile methodology with Scrum and Kanban frameworks](https://en.wikipedia.org/wiki/Agile_software_development). GitHub's built-in tools supported project exectution:
+  * The scope of the project fit well into [Agile methodology with Scrum and Kanban frameworks](https://en.wikipedia.org/wiki/Agile_software_development). GitHub's built-in tools supported project execution:
     * [Projects](https://github.com/jkawahara/bcbc-project1/projects/1) view leveraged as Kanban board for documenting user stories and overall progress 
     * [Issues](https://github.com/jkawahara/bcbc-project1/issues) view leveraged as Issue tracking for user stories, features and bug report
-    * Project team actively participated in Srum including daily standups
+    * Project team actively participated in Scrum including daily standups
   * Wireframe Buildout:
     * Interface Description (Bootstrap CSS library, Popper.js library, Font Awesome CSS library, custom CSS styles and HTML to render primary static Map View) - refer to index.html, style.css files along with Bootstrap CSS library
       * Primary static Map View
@@ -64,7 +64,7 @@
         * ![route-view-readme.png](assets/images/route-view-readme.png "route view") 
         * Route displayed from origin to destination
       * Settings View
-        * ![settings-dropdown-readme.png](assets/images/settings-dropdown-readme.png "settings dropdown")
+        * ![settings-readme.png](assets/images/settings-readme.png "settings")
         * Form fields for Name, Username, Emergency Contact, Remember me checkbox, Log In button, User Options for Option One checkbox and Option Two checkbox
       * SOS Popup
         * ![sos-popup-readme.png](assets/images/sos-popup-readme.png "sos popup")
@@ -100,10 +100,10 @@
 
   * Built With:
     * Custom HTML / CSS / JavaScript.
-    * [Firebase](https://www.gstatic.com/firebasejs/5.5.9/firebase.js)
+    * [Firebase](https://firebase.google.com/docs/web/setup)
     * [Bootstrap](https://getbootstrap.com/docs/4.1/getting-started/introduction/)
     * [Font Awesome](https://fontawesome.com/start)
-    * [jQuery](https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js)
+    * [jQuery](https://api.jquery.com/)
     * [Popper.js](https://popper.js.org/popper-documentation.html)
     * Google Maps Platform:
       * [Static Maps API](https://developers.google.com/maps/documentation/maps-static/intro)
@@ -122,7 +122,13 @@
           * /css
             * style.css
           * /images
-            * various image files
+            * backgroundmap.png
+            * map-layer-primary-view-readme.png
+            * route-view-readme.png
+            * settings-dropdown-readme.png
+            * sos-popup-readme.png
+            * street-view-readme.png
+            * TBD heatmap-readme.png
           * /js
             * config.js - private API keys file; ignored by git tracking
             * js.js
@@ -138,7 +144,7 @@
   * Deployment:
     * Deployed on [GitHub bcbc-project1 pages](https://jkawahara.github.io/bcbc-project1/)
     * Due to API key privacy, developers and users are required to obtain their own API keys in order to further develop or use the application
-      * The config.js file must be updated with respective API keys
+      * TBD The config.js file must be updated with respective API keys
       * TBD for using app without development, detail out config.js update; account for relative path so app works    
 
 ## Versioning
@@ -152,4 +158,4 @@
   * This project is licensed under the [MIT License](LICENSE).
 
 ## Acknowledgments
-  * Thanks to BCBC program personnel, especially our instructor, David Hallinan,  for their guidance on this project.
+  * Thanks to BCBC program personnel, especially our instructor, David Hallinan, for their guidance on this project.
