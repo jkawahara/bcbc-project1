@@ -374,8 +374,6 @@ function getPoints(array) {
 
 //HeatMap End
 
-
-
 function initMap() {
     var directionsService = new google.maps.DirectionsService();
     var directionsDisplay = new google.maps.DirectionsRenderer();
