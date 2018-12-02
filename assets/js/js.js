@@ -1,3 +1,4 @@
+
 var navigation = true;
 
 var dangerStat = [];
@@ -144,7 +145,7 @@ function getLongLat(myLocation, array, radius){
   }
   return radLongLat;
 }
-  
+
 $(document).ready(function () {
     firebase.initializeApp(config.firebase);
 
@@ -252,7 +253,6 @@ function AutocompleteDirectionsHandler(map) {
   this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(destinationInput);
   this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(modeSelector);
 }
-
 // Sets a listener on a radio button to change the filter type on Places
 // Autocomplete.
 AutocompleteDirectionsHandler.prototype.setupClickListener = function (id, mode) {
@@ -276,6 +276,7 @@ AutocompleteDirectionsHandler.prototype.setupPlaceChangedListener = function (au
       }
       if (mode === 'ORIG') {
           me.originPlaceId = place.place_id;
+
           window.originPlace = place;
           calcRoute();
       } else {
@@ -285,6 +286,7 @@ AutocompleteDirectionsHandler.prototype.setupPlaceChangedListener = function (au
       }
       me.route();
   });
+
 
 };
 
@@ -308,11 +310,13 @@ AutocompleteDirectionsHandler.prototype.route = function () {
 };
 
 
+
 $(document).on("click","#toggleMap", function() {
   if (navigation){
     $("#toggleMap").text("Toggle Navigation");
     navigation = false;
     initMapHeat();
+
   }else{
     $("#toggleMap").text("Toggle HeatMap");
     navigation = true;
@@ -323,6 +327,7 @@ $(document).on("click","#toggleMap", function() {
 /*heatMap Info*/
 
 function initMapHeat() {
+
   map = new google.maps.Map(document.getElementById('map'), {
     zoom: 13,
     center: {lat: 37.775, lng: -122.434},
@@ -330,8 +335,9 @@ function initMapHeat() {
     mapTypeControl: false,
     zoomControl: true,
     streetViewControl: true,
+
   });
-  
+
   heatmap = new google.maps.visualization.HeatmapLayer({
     data: getPoints(printedPoints),
     map: map
@@ -339,7 +345,8 @@ function initMapHeat() {
 }
 
 new AutocompleteDirectionsHandler(map);
-  var marker = new google.maps.Marker({
+
+var marker = new google.maps.Marker({
     position: {
         lat: 37.8720,
         lng: -122.2713
@@ -347,6 +354,7 @@ new AutocompleteDirectionsHandler(map);
     map: map,
     draggable: true
 });
+
 
 var searchBox = new google.maps.places.SearchBox(document.getElementById('mapsearch'));
 
@@ -361,7 +369,7 @@ google.maps.event.addListener(searchBox, 'places_changed', function () {
         marker.setPosition(place.geometry.location);
     }
     map.fitBounds(bounds);
-    mpa.setZoom(10);
+    map.setZoom(10);
 });
   
 
