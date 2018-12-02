@@ -18,6 +18,34 @@ body{
   
 }
 
+/*HeatMap CSS*/
+
+#map {
+    height: 100%;
+}
+  /* Optional: Makes the sample page fill the window. */
+  html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  #floating-panel {
+    position: absolute;
+    top: 85%;
+    left: 5%;
+    z-index: 5;
+    text-align: center;
+    font-family: 'Roboto','sans-serif';
+    line-height: 30px;
+  }
+
+  button{
+    background-color: rgb(75, 126, 207);
+    color: white;
+  }
+
+  /*heatMapCSS ^^^^*/
+
 .jumbotron-fluid{
     background-color: rgb(241, 205, 245);
     width:100%;
