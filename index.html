@@ -81,10 +81,14 @@
         <div class="col-md-12">
             <label for="mapsearch"><i class="fas fa-search size:5x"></i></label>
             <input id="mapsearch" type="text" placeholder="  Where to..?" style="width: 340px">
-
-            <form role="form" style="display:none">
+                <button type="submit" id="directions-btn" class="btn btn-primary mb-2">Nav</button>
+            </div>
+            <div id="curnav">
+                <button type="submit" id="currentposition" class="btn btn-primary mb-2">From current position?</button>
+                <button type="submit" id="back" class="btn btn-primary mb-2">Go back</button>
+            </div>
+            <form id="displaygroup" role="form">
                 <div class="form-group">
-                    <label for="origin-input"><i class="fab fa-ethereum"></i> Where to...?</label>
                     <input id="origin-input" class="controls" type="text" placeholder="Enter an origin location">
                     <input id="destination-input" class="controls" type="text" placeholder="Enter a destination location">
                 </div>
