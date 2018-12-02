@@ -1,6 +1,3 @@
-
-
-
 var navigation = true;
 
 var dangerStat = [];
@@ -45,8 +42,7 @@ $.ajax({
     "$$app_token" : "Q6SHiWLggs1tj51Wp1Y9CagsX"
   }
 }).done(function(data) {
-  //alert("Retrieved " + data.length + " records from the dataset!");
-  //console.log(data);
+ 
   dangerData(data);
   sortData(data);
   
@@ -124,7 +120,6 @@ function getLongLat(myLocation, array){
   return radLongLat;
 }
 
-
 function mileConverter(mile){
   return (mile/69);
 }
@@ -132,8 +127,6 @@ function mileConverter(mile){
 function kmConverter(km){
   return (km/111);
 }
-
-
 
 function getLongLat(myLocation, array, radius){
   var x = radius; //chosen lat distance to show the crime spots from geo location
@@ -183,109 +176,66 @@ $(document).ready(function () {
             $("#sosi-button, #segund, #tercer").hide();
         });
     });
+
+    $("#directions-btn").on("click", function(){
+      $("#search-conatiner").hide();
+      $("#origin-input").show();
+      $("#destination-input").show();
+      $("#mode-selector").show();
+          $("#curnav").show();
+
+      $("#destination-input").val($("#mapsearch").val());
+
+      $("#currentposition").click(function() {
+          originPlace = currentPosition;
+          var geocoder = new google.maps.Geocoder();
+          var latLng = new google.maps.LatLng(currentPosition.coords.latitude, currentPosition.coords.longitude);
+
+          if (geocoder) {
+              geocoder.geocode({ 'latLng': latLng}, function (results, status) {
+                  if (status == google.maps.GeocoderStatus.OK) {
+                      console.log(results[0].formatted_address);
+                      $("#origin-input").val(results[0].formatted_address);
+                  }
+                  else {
+                      console.log("Geocoding failed: " + status);
+                  }
+              });
+          }
+          calcRoute();
+      });
+      calcRoute();
+  });
+  $("#back").click(function(){
+      $("#origin-input").hide();
+      $("#destination-input").hide();
+      $("#mode-selector").hide();
+      $("#curnav").hide();
+      $("#search-conatiner").show();
+
+  });
 });
 
 var map, heatmap;
-// @constructor
- 
-
-function AutocompleteDirectionsHandler(map) {
-  this.map = map;
-  this.originPlaceId = null;
-  this.destinationPlaceId = null;
-  this.travelMode = 'WALKING';
-  var originInput = document.getElementById('origin-input');
-  var destinationInput = document.getElementById('destination-input');
-  var modeSelector = document.getElementById('mode-selector');
-  this.directionsService = new google.maps.DirectionsService;
-  this.directionsDisplay = new google.maps.DirectionsRenderer;
-  this.directionsDisplay.setMap(map);
-
-  var originAutocomplete = new google.maps.places.Autocomplete(
-      originInput, {placeIdOnly: true});
-  var destinationAutocomplete = new google.maps.places.Autocomplete(
-      destinationInput, {placeIdOnly: true});
-
-  this.setupClickListener('changemode-walking', 'WALKING');
-  this.setupClickListener('changemode-transit', 'TRANSIT');
-  this.setupClickListener('changemode-driving', 'DRIVING');
-
-  this.setupPlaceChangedListener(originAutocomplete, 'ORIG');
-  this.setupPlaceChangedListener(destinationAutocomplete, 'DEST');
-
-  this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(originInput);
-  this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(destinationInput);
-  this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(modeSelector);
-}
-
-// Sets a listener on a radio button to change the filter type on Places
-// Autocomplete.
-AutocompleteDirectionsHandler.prototype.setupClickListener = function (id, mode) {
-  var radioButton = document.getElementById(id);
-  var me = this;
-  radioButton.addEventListener('click', function () {
-      me.travelMode = mode;
-      me.route();
-  });
-};
-
-AutocompleteDirectionsHandler.prototype.setupPlaceChangedListener = function (autocomplete, mode) {
-  var me = this;
-  autocomplete.bindTo('bounds', this.map);
-  autocomplete.addListener('place_changed', function () {
-      var place = autocomplete.getPlace();
-      if (!place.place_id) {
-          window.alert("Please select an option from the dropdown list.");
-          return;
-      }
-      if (mode === 'ORIG') {
-          me.originPlaceId = place.place_id;
-      } else {
-          me.destinationPlaceId = place.place_id;
-      }
-      me.route();
-  });
-};
-
-AutocompleteDirectionsHandler.prototype.route = function () {
-  if (!this.originPlaceId || !this.destinationPlaceId) {
-      return;
-  }
-  var me = this;
-
-  this.directionsService.route({
-      origin: {'placeId': this.originPlaceId},
-      destination: {'placeId': this.destinationPlaceId},
-      travelMode: this.travelMode
-  }, function (response, status) {
-      if (status === 'OK') {
-          me.directionsDisplay.setDirections(response);
-      } else {
-          window.alert('Directions request failed due to ' + status);
-      }
-  });
-};
-
-/*heatMap Info*/
+var directionsDisplay;
+var directionsService;
+var stepDisplay;
 
 $(document).on("click","#toggleMap", function() {
   if (navigation){
     $("#toggleMap").text("Toggle Navigation");
     navigation = false;
     initMapHeat();
-    console.log("false");
   }else{
     $("#toggleMap").text("Toggle HeatMap");
     navigation = true;
     initMap();
-    console.log("true");
   }
 });
 
+/*heatMap Info*/
+
 function initMapHeat() {
-  var dService = new google.maps.DirectionsService();
-  var dDisplay = new google.maps.DirectionsRenderer();
-  var san_fran = new google.maps.LatLng(37.773972, -122.431297);
   map = new google.maps.Map(document.getElementById('map'), {
     zoom: 13,
     center: {lat: 37.775, lng: -122.434},
@@ -293,19 +243,16 @@ function initMapHeat() {
     mapTypeControl: false,
     zoomControl: true,
     streetViewControl: true,
-
   });
-
-
+  
   heatmap = new google.maps.visualization.HeatmapLayer({
     data: getPoints(printedPoints),
     map: map
   });
 }
-dDisplay.setMap(map);
-new AutocompleteDirectionsHandler(map);
 
-var marker = new google.maps.Marker({
+new AutocompleteDirectionsHandler(map);
+  var marker = new google.maps.Marker({
     position: {
         lat: 37.8720,
         lng: -122.2713
@@ -333,19 +280,17 @@ google.maps.event.addListener(searchBox, 'places_changed', function () {
 
 function changeGradient() {
   var gradient = [
-    'rgba(0, 255, 255, 0)',
     'rgba(0, 255, 255, 1)',
     'rgba(0, 191, 255, 1)',
     'rgba(0, 127, 255, 1)',
     'rgba(0, 63, 255, 1)',
-    'rgba(0, 0, 255, 1)',
-    'rgba(0, 0, 223, 1)',
     'rgba(0, 0, 191, 1)',
-    'rgba(0, 0, 159, 1)',
     'rgba(0, 0, 127, 1)',
     'rgba(63, 0, 91, 1)',
     'rgba(127, 0, 63, 1)',
     'rgba(191, 0, 31, 1)',
+    'rgba(192, 0, 31, 1)',
+    'rgba(193, 0, 31, 1)',
     'rgba(255, 0, 0, 1)'
   ]
   heatmap.set('gradient', heatmap.get('gradient') ? null : gradient);
@@ -367,70 +312,178 @@ function getPoints(array) {
   for (var i = 1; i < 1000 ; i++){
    heatPoints.push(new google.maps.LatLng(array.y[i], array.x[i]));
   }
-  //console.log((new google.maps.LatLng(array.y[i], array.x[i])));
-  console.log(heatPoints);
   return heatPoints;
 }
 
 //HeatMap End
 
 function initMap() {
-    var directionsService = new google.maps.DirectionsService();
-    var directionsDisplay = new google.maps.DirectionsRenderer();
-    var san_francisco = new google.maps.LatLng(37.773972, -122.431297);
-    var mapOptions = {
-        mapTypeControl: false,
-        zoom: 12,
-        center: san_francisco
+  navigator.geolocation.getCurrentPosition(function(position) {
+    window.currentPosition = position;
+    if (typeof currentPosition != "undefined") {
+        jQuery("#currentposition").show();
     }
+});
+directionsService = new google.maps.DirectionsService();
+window.directionsDisplay = new google.maps.DirectionsRenderer();
+var san_francisco = new google.maps.LatLng(37.773972, -122.431297);
+var mapOptions = {
+    mapTypeControl: false,
+    zoom: 12,
+    center: san_francisco
+}
+window.map = new google.maps.Map(document.getElementById('map'), mapOptions);
+directionsDisplay.setMap(map);
+new AutocompleteDirectionsHandler(map);
 
+var marker = new google.maps.Marker({
+    position: {
+        lat: 37.8720,
+        lng: -122.2713
+    },
+    map: map,
+    draggable: true
+});
 
-    map = new google.maps.Map(document.getElementById('map'), mapOptions);
-    directionsDisplay.setMap(map);
-    new AutocompleteDirectionsHandler(map);
+var searchBox = new google.maps.places.SearchBox(document.getElementById('mapsearch'));
 
-    var marker = new google.maps.Marker({
-        position: {
-            lat: 37.8720,
-            lng: -122.2713
-        },
-        map: map,
-        draggable: true
-    });
+google.maps.event.addListener(searchBox, 'places_changed', function () {
+    var places = searchBox.getPlaces();
+    var bounds = new google.maps.LatLngBounds();
+    var i, place;
 
-    var searchBox = new google.maps.places.SearchBox(document.getElementById('mapsearch'));
-
-    google.maps.event.addListener(searchBox, 'places_changed', function () {
-        var places = searchBox.getPlaces();
-        var bounds = new google.maps.LatLngBounds();
-        var i, place;
-
-        for (i = 0; place = places[i]; i++) {
-
-            bounds.extend(place.geometry.location);
-            marker.setPosition(place.geometry.location);
-        }
-        map.fitBounds(bounds);
-        mpa.setZoom(10);
-    })
-
-
+    for (i = 0; place = places[i]; i++) {
+        window.destinationPlace = place;
+        bounds.extend(place.geometry.location);
+        marker.setPosition(place.geometry.location);
+    }
+    map.fitBounds(bounds);
+    map.setZoom(15);
+})
 }
 
 
+function AutocompleteDirectionsHandler(map) {
+  this.map = map;
+  this.originPlaceId = null;
+  this.destinationPlaceId = null;
+  this.travelMode = 'WALKING';
+  window.travelMode = this.travelMode;
+  var originInput = document.getElementById('origin-input');
+  var destinationInput = document.getElementById('destination-input');
+  var modeSelector = document.getElementById('mode-selector');
+  this.directionsService = new google.maps.DirectionsService;
+  this.directionsDisplay = directionsDisplay;
+  this.directionsDisplay.setMap(map);
+
+  var originAutocomplete = new google.maps.places.Autocomplete(
+      originInput, {placeIdOnly: true});
+  var destinationAutocomplete = new google.maps.places.Autocomplete(
+      destinationInput, {placeIdOnly: true});
+
+  this.setupClickListener('changemode-walking', 'WALKING');
+  this.setupClickListener('changemode-transit', 'TRANSIT');
+  this.setupClickListener('changemode-driving', 'DRIVING');
+
+  this.setupPlaceChangedListener(originAutocomplete, 'ORIG');
+  this.setupPlaceChangedListener(destinationAutocomplete, 'DEST');
+
+  this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(originInput);
+  this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(destinationInput);
+  this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(modeSelector);
+}
+
+// Sets a listener on a radio button to change the filter type on Places
+// Autocomplete.
+AutocompleteDirectionsHandler.prototype.setupClickListener = function (id, mode) {
+  var radioButton = document.getElementById(id);
+  var me = this;
+  radioButton.addEventListener('click', function () {
+      window.travelMode = mode;
+      me.travelMode = mode;
+      me.route();
+  });
+};
+
+AutocompleteDirectionsHandler.prototype.setupPlaceChangedListener = function (autocomplete, mode) {
+  var me = this;
+  autocomplete.bindTo('bounds', this.map);
+  autocomplete.addListener('place_changed', function () {
+      var place = autocomplete.getPlace();
+      if (!place.place_id) {
+          window.alert("Please select an option from the dropdown list.");
+          return;
+      }
+      if (mode === 'ORIG') {
+          me.originPlaceId = place.place_id;
+          window.originPlace = place;
+          calcRoute();
+      } else {
+          me.destinationPlaceId = place.place_id;
+          window.destinationPlace = place;
+          calcRoute();
+      }
+      me.route();
+  });
+
+};
+
+AutocompleteDirectionsHandler.prototype.route = function () {
+  if (!this.originPlaceId || !this.destinationPlaceId) {
+      return;
+  }
+  var me = this;
+
+  this.directionsService.route({
+      origin: {'placeId': this.originPlaceId},
+      destination: {'placeId': this.destinationPlaceId},
+      travelMode: this.travelMode
+  }, function (response, status) {
+      if (status === 'OK') {
+          me.directionsDisplay.setDirections(response);
+      } else {
+          window.alert('Directions request failed due to ' + status);
+      }
+  });
+};
+
 function calcRoute() {
-    var start = document.getElementById('origin-input').value;
-    var end = document.getElementById('destination-input').value;
-    var request = {
-        origin: start,
-        destination: end,
-        travelMode: 'DRIVING'
-    };
-    directionsService.route(request, function (result, status) {
-        if (status == 'OK') {
-            directionsDisplay.setDirections(result);
-        }
-    });
+  var directionsService = new google.maps.DirectionsService();
+  this.directionsDisplay = directionsDisplay;
+  this.directionsDisplay.setMap(map);
+
+  if (typeof originPlace == "undefined" || typeof destinationPlace == "undefined") {
+      return false;
   }
 
-  
+  if (typeof originPlace.place_id != "undefined") {
+      origin = {'placeId': originPlace.place_id};
+  } else if (typeof originPlace.coords != "undefined") {
+      origin = {
+          lat: originPlace.coords.latitude,
+          lng: originPlace.coords.longitude,
+      }
+  } else {
+      origin = originPlace;
+  }
+
+  if (typeof destinationPlace.place_id != "undefined") {
+      destination = {'placeId': destinationPlace.place_id};
+  } else {
+      destination = originPlace;
+  }
+
+  var request = {
+      origin: origin,
+      destination: destination,
+      travelMode: google.maps.TravelMode[travelMode]
+  };
+
+  directionsService.route(request, function(response, status) {
+      if (status == 'OK') {
+          directionsDisplay.setDirections(response);
+      } else {
+          window.alert('Directions request failed due to ' + status);
+      }
+  });
+}
