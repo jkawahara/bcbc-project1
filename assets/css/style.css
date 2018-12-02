@@ -13,6 +13,7 @@ body{
     height:100%; 
     background-color: rgb(40, 122, 204);
     background-blend-mode:multiply;
+
     /* background-size: contain; */
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   
@@ -22,6 +23,7 @@ body{
 
 #map {
     height: 100%;
+
 }
   /* Optional: Makes the sample page fill the window. */
   html, body {
@@ -139,7 +141,6 @@ footer{
      display:none;
      width:100%;
      height:100%;
-
      z-index: 999;
  }
 .controls {
@@ -169,6 +170,7 @@ footer{
 #origin-input:focus,
 #destination-input:focus {
     border-color: #4d90fe;
+    z-index: 2;
 }
 
 #map-canvas{

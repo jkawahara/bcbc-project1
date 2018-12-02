@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,45 +18,44 @@
     <script src="https://www.gstatic.com/firebasejs/5.5.9/firebase-database.js"></script>
     <script src="config.js"></script>
 
-
 </head>
 
 <body>
-    <div class="pos-f-t" style="width: 400px;" class="fixed-top">
-        <div class="collapse" id="navbarToggleExternalContent">
-            <div class="bg-dark p-4">
-
-                <h4 class="text-white">Settings</h4>
-                <form>
-                    <div class="form-row align-items-center">
-                        <div class="col-auto">
-                            <label class="sr-only" for="inlineFormInput">Name</label>
-                            <input type="text" class="form-control mb-2" id="inlineFormInput" placeholder="Name">
-                        </div>
-                        <div class="col-auto">
-                            <label class="sr-only" for="inlineFormInputGroup">Username</label>
-                            <div class="input-group mb-2">
-                                <div class="input-group-prepend">
-                                    <div class="input-group-text">Tel</div>
+        <div class="pos-f-t" style="width: 400px;" class="fixed-top">
+            <div class="collapse" id="navbarToggleExternalContent">
+                <div class="bg-dark p-4">
+    
+                    <h4 class="text-white">Settings</h4>
+                    <form>
+                        <div class="form-row align-items-center">
+                            <div class="col-auto">
+                                <label class="sr-only" for="inlineFormInput">Name</label>
+                                <input type="text" class="form-control mb-2" id="inlineFormInput" placeholder="Name">
+                            </div>
+                            <div class="col-auto">
+                                <label class="sr-only" for="inlineFormInputGroup">Username</label>
+                                <div class="input-group mb-2">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">Tel</div>
+                                    </div>
+                                    <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Emergency Contact">
                                 </div>
-                                <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Emergency Contact">
+                            </div>
+                            <div class="col-auto">
+                                <div class="form-check mb-2">
+                                    <input class="form-check-input" type="checkbox" id="autoSizingCheck">
+                                    <label class="form-check-label" for="autoSizingCheck">
+                                        Remember me
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-auto">
+                                <button type="submit" id="logInBnt" class="btn btn-primary mb-2">Log In</button>
                             </div>
                         </div>
-                        <div class="col-auto">
-                            <div class="form-check mb-2">
-                                <input class="form-check-input" type="checkbox" id="autoSizingCheck">
-                                <label class="form-check-label" for="autoSizingCheck">
-                                    Remember me
-                                </label>
-                            </div>
-                        </div>
-                        <div class="col-auto">
-                            <button type="submit" id="logInBnt" class="btn btn-primary mb-2">Log In</button>
-                        </div>
-                    </div>
-                </form>
-                <span class="text-muted">User Options</span>
-                <div class="form-check">
+                    </form>
+             <!--   <span class="text-muted">User Options</span>
+            <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
                     <label class="form-check-label" for="defaultCheck1">
                         Option One
@@ -65,9 +65,8 @@
                     <input class="form-check-input" type="checkbox" value="" id="defaultCheck2" disabled>
                     <label class="form-check-label" for="defaultCheck2">
                         Option Two
-                    </label>
-                </div>
-            </div>
+                    </label> -->
+              </div> 
         </div>
         <nav class="navbar navbar-dark bg-dark">
             <h2 style="background-color: transparent; color: rgb(255, 255, 255);" class="text-center"><strong><i class="fa fa-moon"></i>NightCrawler</strong></h2>
@@ -77,6 +76,7 @@
             </button>
         </nav>
     </div>
+
     <div class="jumbotron jumbotron-fluid">
         <div class="col-md-12">
 
@@ -106,13 +106,15 @@
 
             <div class="mapFrame">
 
-                 <!-- heatMap Addition-->
-                    <div id="floating-panel">
+
+                      <!-- heatMap Addition-->
+                      <div id="floating-panel">
                             <button  id = "toggleMap" >Toggle Heatmap</button>
                     </div>   
-                 <!-- heatMap Addition ^^-->                
+                 <!-- heatMap Addition ^^-->  
 
-                <div id="map" style="width:375px; height:540px"></div>
+                <div id="map" style="width:375px;height:550px"></div>
+
             </div>
             <button type="submit" class="btn btn-danger" id="run-search"><i class="fa fa-exclamation"></i>SOS</button>
 
@@ -139,6 +141,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
     <script type="text/javascript">
+
       var JSLink = "https://maps.googleapis.com/maps/api/js?key=" + config.google_map.key + "&libraries=places,visualization&callback=initMap";
         var JSElement = document.createElement('script');
         JSElement.src = JSLink;
@@ -146,7 +149,6 @@
         document.getElementsByTagName('head')[0].appendChild(JSElement);
         function OnceLoaded() {}
     </script>
-
 
     <script src="assets/js/js.js"></script>
 
