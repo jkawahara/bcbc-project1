@@ -79,7 +79,17 @@
     </div>
     <div class="jumbotron jumbotron-fluid">
         <div class="col-md-12">
-            <form role="form" style="display:none">
+
+            <label for="mapsearch"><i class="fas fa-search size:5x"></i></label>
+            <div id="search-conatiner">
+                <input id="mapsearch" type="text" placeholder="  Where to..?" style="width: 340px">
+                <button type="submit" id="directions-btn" class="btn btn-primary mb-2">Nav</button>
+            </div>
+            <div id="curnav">
+                <button type="submit" id="currentposition" class="btn btn-primary mb-2">From current position?</button>
+                <button type="submit" id="back" class="btn btn-primary mb-2">Go back</button>
+            </div>
+            <form id="displaygroup" role="form">
                 <div class="form-group">
                     <input id="origin-input" class="controls" type="text" placeholder="Enter an origin location">
                     <input id="destination-input" class="controls" type="text" placeholder="Enter a destination location">

@@ -151,7 +151,7 @@ function getLongLat(myLocation, array, radius){
   }
   return radLongLat;
 }
-  
+
 $(document).ready(function () {
     firebase.initializeApp(config.firebase);
 
@@ -183,12 +183,10 @@ $(document).ready(function () {
             $("#sosi-button, #segund, #tercer").hide();
         });
     });
-});
 
 var map, heatmap;
 // @constructor
  
-
 function AutocompleteDirectionsHandler(map) {
   this.map = map;
   this.originPlaceId = null;
@@ -314,6 +312,49 @@ var marker = new google.maps.Marker({
     draggable: true
 });
 
+    $("#directions-btn").on("click", function(){
+        $("#search-conatiner").hide();
+        $("#origin-input").show();
+        $("#destination-input").show();
+        $("#mode-selector").show();
+            $("#curnav").show();
+
+
+        $("#destination-input").val($("#mapsearch").val());
+
+        $("#currentposition").click(function() {
+            originPlace = currentPosition;
+            var geocoder = new google.maps.Geocoder();
+            var latLng = new google.maps.LatLng(currentPosition.coords.latitude, currentPosition.coords.longitude);
+
+            if (geocoder) {
+                geocoder.geocode({ 'latLng': latLng}, function (results, status) {
+                    if (status == google.maps.GeocoderStatus.OK) {
+                        console.log(results[0].formatted_address);
+                        $("#origin-input").val(results[0].formatted_address);
+                    }
+                    else {
+                        console.log("Geocoding failed: " + status);
+                    }
+                });
+            }
+
+            calcRoute();
+        });
+        calcRoute();
+    });
+    $("#back").click(function(){
+        $("#origin-input").hide();
+        $("#destination-input").hide();
+        $("#mode-selector").hide();
+        $("#curnav").hide();
+        $("#search-conatiner").show();
+
+    });
+});
+
+
+
 var searchBox = new google.maps.places.SearchBox(document.getElementById('mapsearch'));
 
 google.maps.event.addListener(searchBox, 'places_changed', function () {
@@ -372,13 +413,15 @@ function getPoints(array) {
   return heatPoints;
 }
 
-//HeatMap End
-
-
-
 function initMap() {
+    navigator.geolocation.getCurrentPosition(function(position) {
+        window.currentPosition = position;
+        if (typeof currentPosition != "undefined") {
+            jQuery("#currentposition").show();
+        }
+    });
     var directionsService = new google.maps.DirectionsService();
-    var directionsDisplay = new google.maps.DirectionsRenderer();
+    window.directionsDisplay = new google.maps.DirectionsRenderer();
     var san_francisco = new google.maps.LatLng(37.773972, -122.431297);
     var mapOptions = {
         mapTypeControl: false,
@@ -386,8 +429,10 @@ function initMap() {
         center: san_francisco
     }
 
-
     map = new google.maps.Map(document.getElementById('map'), mapOptions);
+
+    window.map = new google.maps.Map(document.getElementById('map'), mapOptions);
+
     directionsDisplay.setMap(map);
     new AutocompleteDirectionsHandler(map);
 
@@ -408,31 +453,29 @@ function initMap() {
         var i, place;
 
         for (i = 0; place = places[i]; i++) {
-
+            window.destinationPlace = place;
             bounds.extend(place.geometry.location);
             marker.setPosition(place.geometry.location);
         }
         map.fitBounds(bounds);
-        mpa.setZoom(10);
+        map.setZoom(15);
     })
 
+    var request = {
+        origin: origin,
+        destination: destination,
+        travelMode: google.maps.TravelMode[travelMode]
+    };
+
+    directionsService.route(request, function(response, status) {
+        if (status == 'OK') {
+            directionsDisplay.setDirections(response);
+        } else {
+            window.alert('Directions request failed due to ' + status);
+        }
+    });
+
+  }
 
 }
 
-
-function calcRoute() {
-    var start = document.getElementById('origin-input').value;
-    var end = document.getElementById('destination-input').value;
-    var request = {
-        origin: start,
-        destination: end,
-        travelMode: 'DRIVING'
-    };
-    directionsService.route(request, function (result, status) {
-        if (status == 'OK') {
-            directionsDisplay.setDirections(result);
-        }
-    });
-  }
-
-  
